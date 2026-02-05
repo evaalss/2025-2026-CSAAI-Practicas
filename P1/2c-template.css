@@ -12,6 +12,13 @@ padding: 10px;
 min-height: 500px;
 }
 
+body {
+    background-image: url('dreamhouse.png');
+    background-size: cover;       
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+}
+
 .izquierda {
 width: 25%;
 }
@@ -21,18 +28,18 @@ width: 75%;
 }
 
 /* Clear floats despues de las columnas para eliminar la superposición */
-.filla:after {
+.fila:after {
 content: "";
 display: table;
 clear: both;
 }
 
 #c1 {
-    background-color:#fd79f2;
+    background-color: rgba(255, 142, 246, 0.6);
 }
 
 #c2 {
-    background-color:#f89be4;
+    background-color: rgba(255, 142, 246, 0.6);
 }
 
 /* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
@@ -43,12 +50,21 @@ img {
     height: auto;
 }
 
+h2 {
+    text-align: center;
+    color: #c700a6;
+}
+
 .iresponsive {
     padding: 0 6px;
-    float: left;
-    width: 50%;
+    width: 100%;
   }
 
+p, li {
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgba(139, 0, 133, 0.3); /* Sombra suave para mejorar lectura */
+    font-size: 1.1rem; /* Opcional: para que se lea un poco más grande */
+}
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
 /* Así conseguimos que el contenido se vea bien en dispositvos móviles */
 
