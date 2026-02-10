@@ -55,7 +55,7 @@ img {
 
 h2 {
     text-align: center;
-    color: #c700a6;
+    color: #ffe4fb;
 }
 
 .iresponsive {
@@ -70,6 +70,32 @@ p, li {
 }
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
 /* Así conseguimos que el contenido se vea bien en dispositvos móviles */
+
+/* --- Estilos para los cuadritos internos de experiencia --- */
+
+.tarjeta-mini {
+    background-color: rgba(243, 194, 245, 0.5); /* Blanco opaco para que se vea como un cuadro real */
+    padding: 15px;
+    margin-bottom: 15px;      /* Espacio entre un cuadrito y otro */
+    border-radius: 15px;      /* Esquinas redondeadas */
+    border: 1px solid white;  /* Borde fino blanco para resaltar */
+    width: 100%;              /* Ocupa todo el ancho de la columna c2 */
+    display: block;           /* Se asegura de que se comporte como un bloque */
+}
+
+.tarjeta-mini h3 {
+    color: #c700a6;           /* Color rosa fuerte para los subtítulos */
+    font-weight: bold;        /* Negrita para que resalte */
+    margin-top: 0;            /* Quita el espacio de arriba */
+    margin-bottom: 10px;      /* Espacio bajo el título */
+    font-size: 1.2rem;
+}
+
+.tarjeta-mini p {
+    color: #ffffff !important;   /* Texto gris oscuro para que se lea perfecto sobre blanco */
+    margin: 5px 0;
+    text-shadow: none;        /* Quitamos sombras para que no se vea borroso */
+}
 
 @media screen and (max-width: 600px) {
     .columna {
