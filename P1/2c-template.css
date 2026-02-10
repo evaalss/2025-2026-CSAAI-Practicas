@@ -83,16 +83,8 @@ p, li {
     display: block;           /* Se asegura de que se comporte como un bloque */
 }
 
-.tarjeta-mini h3 {
-    color: #c700a6;           /* Color rosa fuerte para los subtítulos */
-    font-weight: bold;        /* Negrita para que resalte */
-    margin-top: 0;            /* Quita el espacio de arriba */
-    margin-bottom: 10px;      /* Espacio bajo el título */
-    font-size: 1.2rem;
-}
-
 .tarjeta-mini p {
-    color: #ffffff !important;   /* Texto gris oscuro para que se lea perfecto sobre blanco */
+    color: #ffffff !important;   /* Texto para que se lea perfecto sobre blanco */
     margin: 5px 0;
     text-shadow: none;        /* Quitamos sombras para que no se vea borroso */
 }
