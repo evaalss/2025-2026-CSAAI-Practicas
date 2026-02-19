@@ -187,3 +187,14 @@ body {
         transform: translateY(0);
     }
 }
+
+@media screen and (max-width: 600px) {
+    .columna {
+      width: 100%;
+    }
+
+    .iresponsive {
+        width: 100%;
+    }
+}
+
