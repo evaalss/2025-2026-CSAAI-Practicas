@@ -173,8 +173,6 @@ body {
     max-width: 250px;           /* tamaño máximo para que no sean gigantes */
 }
 
-
-
 /* Animación */
 @keyframes aparecer {
     from {
