@@ -200,7 +200,7 @@ body {
 
 @media (orientation: portrait) {
     body {
-        background-image: url('vertical.jpg');
+        background-image: url('vertical.jpg') !important;
         background-size: cover;
         background-position: center;
     }
