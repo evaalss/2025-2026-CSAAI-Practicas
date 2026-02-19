@@ -15,7 +15,7 @@
 }
 
 body {
-    background-image: url('dreamhouse.png');
+    background-image: url('fondobonito.jpg');
     background-size: cover;       
     background-attachment: fixed; 
     background-repeat: no-repeat; 
@@ -88,35 +88,6 @@ p, li {
     margin: 5px 0;
     text-shadow: none;        /* Quitamos sombras para que no se vea borroso */
 }
-
-/* --- Botones estilo Barbie --- */
-
-.boton-barbie {
-    background-color: rgba(243, 194, 245, 0.6); /* parecido a tarjeta-mini */
-    border: 1px solid white;
-    color: white;
-    padding: 12px 20px;
-    margin-top: 10px;
-    width: 100%;              /* mismo ancho que la columna */
-    border-radius: 15px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
-    transition: all 0.3s ease;
-}
-
-/* Hover bonito */
-.boton-barbie:hover {
-    background-color: rgba(255, 142, 246, 0.8);
-    transform: translateY(-2px); /* efecto flotante */
-    box-shadow: 0 6px 12px rgba(139, 0, 133, 0.3);
-}
-
-/* Click */
-.boton-barbie:active {
-    transform: scale(0.98);
-}
-
 
 @media screen and (max-width: 600px) {
     .columna {
