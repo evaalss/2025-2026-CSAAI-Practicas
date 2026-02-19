@@ -198,10 +198,13 @@ body {
     }
 }
 
-@media (orientation: portrait) {
+@media (max-width: 768px) {
     body {
         background-image: url('vertical.jpg') !important;
-        background-size: cover;
-        background-position: center;
+        background-size: contain;      /* Cambiado de cover a contain */
+        background-repeat: no-repeat;  /* Evita que la imagen se duplique */
+        background-position: center;   /* La mantiene centrada en el hueco */
+        background-color: #ffb6c1;     /* Pon aquí el color rosa que mejor le vaya a tu fondo */
+        background-attachment: scroll; /* En móviles el 'fixed' a veces hace que se vea mal o recortada */
     }
 }
