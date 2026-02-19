@@ -49,11 +49,11 @@ body {
     width: 200px;
     max-width:90%;
     margin: 30px auto;
+    padding: 14px;
+    border-radius: 20px;
     background-color: rgba(255, 29, 176, 0.7);
     border: 2px solid white;
     color: white;
-    padding: 14px;
-    border-radius: 20px;
     text-align: center;
     text-decoration: none;
     font-size: 1.1rem;
@@ -152,7 +152,7 @@ body {
 
 .titulo-sobre-mi {
     text-align: center;       /* centra el texto horizontalmente */
-    color: #f02289;           /* rosita Barbie brillante */
+    color: rgb(255, 29, 176);           /* rosita Barbie brillante */
     font-size: 2.5rem;        /* tamaño grande para destacar */
     font-weight: bold;        /* que resalte */
     margin: 30px 0;           /* espacio arriba y abajo */
