@@ -129,6 +129,29 @@ button {
     transform: scale(0.97);
 }
 
+/* --- Imágenes con esquinas redondeadas y hover --- */
+
+.iresponsive,
+.img-card {
+    border-radius: 20px;   /* esquinas redondeadas */
+    overflow: hidden;      /* MUY IMPORTANTE para que el zoom no se salga */
+    margin-bottom: 15px;
+}
+
+/* Imagen en sí */
+.iresponsive img,
+.img-card img {
+    border-radius: 20px;
+    transition: transform 0.4s ease;
+}
+
+/* Hover: zoom suave */
+.iresponsive img:hover,
+.img-card img:hover {
+    transform: scale(1.08);
+}
+
+
 @media screen and (max-width: 600px) {
     .columna {
       width: 100%;
