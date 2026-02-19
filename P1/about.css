@@ -198,3 +198,10 @@ body {
     }
 }
 
+@media (orientation: portrait) {
+    body {
+        background-image: url('vertical.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+}
