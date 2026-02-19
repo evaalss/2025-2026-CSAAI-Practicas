@@ -1,13 +1,13 @@
 /* --- Fondo distinto para About --- */
 
-body {
+/* body {
     background-image: url('fondobonito.jpg');
     background-size: cover;       
-    background-position: center;  /* Esto centra la imagen horizontal y verticalmente */
+    background-position: center; 
     background-attachment: fixed; 
     background-repeat: no-repeat;
-    margin: 0; /* Asegúrate de que no haya márgenes por defecto */
-}
+    margin: 0; 
+} */
 
 
 /* Contenedor principal */
@@ -198,21 +198,30 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    html, body {
-        height: 100%; /* Asegura que el contenedor tenga altura */
-        margin: 0;
-        padding: 0;
-    }
+/* 1. Configuración general (PC y móvil en horizontal) */
+body {
+    background-image: url('fondobonito.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin: 0;
+}
 
+/* 2. Configuración específica SOLO para cuando el dispositivo esté en VERTICAL */
+@media (orientation: portrait) {
     body {
-        background-image: url('vertical.jpg') !important;
-        /* Cambiamos a 100% auto para que el ancho encaje perfecto y el resto fluya */
-        background-size: 100% auto !important; 
-        background-position: top center !important;
-        background-repeat: no-repeat !important;
-        /* ¡Fundamental! El 'fixed' en móvil rompe el ajuste */
+        background-image: url('tu-imagen-vertical.jpg') !important;
+        
+        /* Para que se vea ENTERA usa 'contain'. 
+           Si prefieres que rellene todo aunque corte un poco, usa 'cover' */
+        background-size: contain !important; 
+        
+        background-position: center center !important;
         background-attachment: scroll !important; 
-        background-color: #ffb6c1; /* Color de respaldo por si la foto es corta */
+        background-repeat: no-repeat !important;
+        
+        /* Color de fondo para que no se vea blanco donde la imagen no llega */
+        background-color: #ffb6c1 !important; 
     }
 }
