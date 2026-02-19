@@ -3,8 +3,10 @@
 body {
     background-image: url('fondobonito.jpg');
     background-size: cover;       
+    background-position: center;  /* Esto centra la imagen horizontal y verticalmente */
     background-attachment: fixed; 
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
+    margin: 0; /* Asegúrate de que no haya márgenes por defecto */
 }
 
 
