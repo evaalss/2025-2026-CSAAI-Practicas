@@ -89,32 +89,40 @@ p, li {
     text-shadow: none;        /* Quitamos sombras para que no se vea borroso */
 }
 
-/* --- Botones estilo Barbie --- */
+/* --- RESET TOTAL DEL BOTÓN (clave para GitHub) --- */
+button {
+    all: unset;              /* elimina estilos por defecto del navegador */
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    font-family: inherit;
+}
 
+/* --- Botón estilo Barbie consistente --- */
 .boton-barbie {
-    background-color: rgba(243, 194, 245, 0.6); /* parecido a tarjeta-mini */
+    background-color: rgba(243, 194, 245, 0.6);
     border: 1px solid white;
     color: white;
     padding: 12px 20px;
     margin-top: 10px;
-    width: 100%;              /* mismo ancho que la columna */
     border-radius: 15px;
     font-size: 1.1rem;
+    text-align: center;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
     transition: all 0.3s ease;
 }
 
-/* Hover bonito */
+/* Hover */
 .boton-barbie:hover {
     background-color: rgba(255, 142, 246, 0.8);
-    transform: translateY(-2px); /* efecto flotante */
+    transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(139, 0, 133, 0.3);
 }
 
-/* Click */
+/* Active */
 .boton-barbie:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
 
