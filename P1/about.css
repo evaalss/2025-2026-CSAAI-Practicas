@@ -199,12 +199,20 @@ body {
 }
 
 @media (max-width: 768px) {
+    html, body {
+        height: 100%; /* Asegura que el contenedor tenga altura */
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         background-image: url('vertical.jpg') !important;
-        background-size: contain;      /* Cambiado de cover a contain */
-        background-repeat: no-repeat;  /* Evita que la imagen se duplique */
-        background-position: center;   /* La mantiene centrada en el hueco */
-        background-color: #ffb6c1;     /* Pon aquí el color rosa que mejor le vaya a tu fondo */
-        background-attachment: scroll; /* En móviles el 'fixed' a veces hace que se vea mal o recortada */
+        /* Cambiamos a 100% auto para que el ancho encaje perfecto y el resto fluya */
+        background-size: 100% auto !important; 
+        background-position: top center !important;
+        background-repeat: no-repeat !important;
+        /* ¡Fundamental! El 'fixed' en móvil rompe el ajuste */
+        background-attachment: scroll !important; 
+        background-color: #ffb6c1; /* Color de respaldo por si la foto es corta */
     }
 }
