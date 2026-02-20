@@ -176,7 +176,7 @@ body {
 .contenedor-video {
     position: relative;
     width: 100%;
-    max-width: 500px; /* Tamaño máximo para que no ocupe toda la pantalla en PC */
+    max-width: 550px; /* Tamaño máximo para que no ocupe toda la pantalla en PC */
     margin: 20px auto;
     aspect-ratio: 16 / 9; /* Mantiene la forma del video automáticamente */
     border-radius: 20px;
