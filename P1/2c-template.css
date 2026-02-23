@@ -123,48 +123,6 @@ p, li {
     text-shadow: none;        /* Quitamos sombras para que no se vea borroso */
 }
 
-/* --- RESET TOTAL DEL BOTÓN (clave para GitHub) --- */
-button {
-    all: unset;              /* elimina estilos por defecto del navegador */
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
-    font-family: inherit;
-}
-
-/* --- Botones tipo enlace (compatibles GitHub) --- */
-
-.boton-barbie {
-    display: block;
-    width: 100%;
-    background-color: rgba(243, 194, 245, 0.6);
-    border: 1px solid white;
-    color: white;
-    padding: 12px 20px;
-    margin-top: 10px;
-    border-radius: 15px;
-    font-size: 1.1rem;
-    text-align: center;
-    text-decoration: none; /* quita subrayado */
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
-    transition: all 0.3s ease;
-}
-
-/* Hover */
-.boton-barbie:hover {
-    background-color: rgba(255, 142, 246, 0.85);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(139, 0, 133, 0.3);
-}
-
-/* Active (click) */
-.boton-barbie:active {
-    transform: scale(0.97);
-}
-
-/* --- Imágenes con esquinas redondeadas y hover --- */
-
 .iresponsive,
 .img-card {
     border-radius: 20px;   /* esquinas redondeadas */
