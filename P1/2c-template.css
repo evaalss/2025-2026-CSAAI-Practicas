@@ -4,6 +4,40 @@
 * {
     box-sizing: border-box;
   }
+
+/* Contenedor principal del menú sin el recuadro rosa */
+.navbar {
+    background-color: transparent; /* Esto quita el color rosa de fondo */
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+/* El resto de tu código (ul, li, a, .active) se queda igual */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 30px;
+}
+
+.navbar a {
+    color: #ffe4fb; /* El mismo color del título */
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.active {
+    border-bottom: 4px solid white;
+}
   
 /* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
 .columna {
