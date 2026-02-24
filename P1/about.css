@@ -91,7 +91,6 @@ body {
     padding: 14px;
     border-radius: 20px;
     background-color: rgba(255, 29, 176, 0.7);
-    border: 2px solid white;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -217,7 +216,6 @@ body {
     max-width: 550px;    /* Aquí controlas que sea más pequeño */
     margin: 40px auto;   /* Centrado horizontal */
     text-align: center;
-    border: 2px solid rgba(255, 255, 255, 0.4); /* Borde suave para que resalte */
 }
 
 /* Ajuste para el título dentro del cuadro de video */

@@ -115,21 +115,34 @@ h2 {
     background-color: #d61896;
 }
 
-/* Enlace de vuelta al inicio */
+/* Contenedor para centrar el botón en la página */
 .enlace-vuelta {
-    text-align: center;
-    margin: 40px 0;
+    width: 100%;           /* Ocupa todo el ancho para poder centrar */
+    text-align: center;    /* Centra el contenido horizontalmente */
+    margin: 50px 0;        /* Espacio arriba y abajo para que no pegue con las tarjetas */
 }
 
+/* El botón con estética de tarjeta */
 .enlace-vuelta a {
-    color: rgb(255, 29, 176);
+    background-color: rgba(255, 255, 255, 0.25); /* Transparencia estilo tarjeta */
+    border: 2px solid rgb(255, 29, 176);         /* Tu rosa Barbie */
+    border-radius: 15px;                         /* Esquinas redondeadas */
+    padding: 12px 30px;                          /* Espacio interno para que parezca un cuadro */
+    color: rgb(255, 29, 176);                    /* Color del texto */
+    font-family: 'Georgia', serif;               /* Misma fuente que tus títulos */
     font-weight: bold;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    display: inline-block;                       /* Permite que el botón tenga forma de recuadro */
+    backdrop-filter: blur(5px);                  /* Efecto de cristal esmerilado */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);    /* Sombra suave para que "flote" */
+    transition: all 0.3s ease;                   /* Suaviza las animaciones */
 }
 
+/* Efecto al pasar el ratón */
 .enlace-vuelta a:hover {
-    border-bottom: 1px solid rgb(255, 29, 176);
+    transform: scale(1.05);                      /* Crece un poquito */
+    background-color: rgba(255, 255, 255, 0.4);  /* Se vuelve un pelín más opaco */
+    box-shadow: 0 6px 20px rgba(255, 29, 176, 0.3); /* Sombra rosa al iluminarse */
 }
 
 .gif-historia {
