@@ -264,3 +264,21 @@ body {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .navbar ul {
+        flex-wrap: nowrap; /* Obligamos a que se mantengan en una sola línea */
+    }
+
+    .navbar a {
+        font-size: 1rem; /* Letra más pequeña solo en móvil para que quepa "Acerca de" */
+    }
+
+    .navbar li {
+        margin: 0 5px; /* Margen mínimo en móvil */
+    }
+    
+    .columna {
+        width: 100%;
+    }
+}
