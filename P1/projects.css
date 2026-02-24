@@ -101,48 +101,59 @@ h2 {
 }
 
 /* Estilo del botón */
+/* Botones de las tarjetas totalmente redondeados */
 .boton-card {
-    background-color: rgb(255, 29, 176);
+    background-color: rgb(255, 29, 176); /* Tu rosa Barbie */
     color: white;
     text-decoration: none;
     text-align: center;
-    padding: 10px;
-    margin-top: 15px;
+    padding: 12px 20px;
+    border-radius: 15px; /* Valor alto para redondeo total */
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    margin-top: 20px;
     display: block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 29, 176, 0.3); /* Sombra rosa suave */
 }
 
+/* Efecto al pasar el ratón por el botón */
 .boton-card:hover {
-    background-color: #d61896;
+    background-color: #d61896; /* Rosa más intenso */
+    transform: translateY(-2px); /* Pequeña elevación */
+    box-shadow: 0 6px 15px rgba(255, 29, 176, 0.5);
 }
-
-/* Contenedor para centrar el botón en la página */
+/* Contenedor corregido para que no salgan cuadros extraños */
 .enlace-vuelta {
-    width: 100%;           /* Ocupa todo el ancho para poder centrar */
-    text-align: center;    /* Centra el contenido horizontalmente */
-    margin: 50px 0;        /* Espacio arriba y abajo para que no pegue con las tarjetas */
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+    clear: both; /* Esto evita que las columnas de arriba se monten sobre el botón */
+    display: block;
+    list-style: none; /* Por si acaso el móvil lo interpreta como una lista */
 }
 
-/* El botón con estética de tarjeta */
+/* El botón refinado */
 .enlace-vuelta a {
-    background-color: rgba(255, 255, 255, 0.25); /* Transparencia estilo tarjeta */
-    border: 2px solid rgb(255, 29, 176);         /* Tu rosa Barbie */
-    border-radius: 15px;                         /* Esquinas redondeadas */
-    padding: 12px 30px;                          /* Espacio interno para que parezca un cuadro */
-    color: rgb(255, 29, 176);                    /* Color del texto */
-    font-family: 'Georgia', serif;               /* Misma fuente que tus títulos */
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgb(255, 29, 176);
+    border-radius: 15px;
+    padding: 12px 30px;
+    color: rgb(255, 29, 176);
+    font-family: 'Georgia', serif;
     font-weight: bold;
     text-decoration: none;
-    display: inline-block;                       /* Permite que el botón tenga forma de recuadro */
-    backdrop-filter: blur(5px);                  /* Efecto de cristal esmerilado */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);    /* Sombra suave para que "flote" */
-    transition: all 0.3s ease;                   /* Suaviza las animaciones */
+    display: inline-block;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    /* Eliminamos cualquier decoración extra que añada el móvil */
+    -webkit-appearance: none; 
 }
 
-/* Efecto al pasar el ratón */
 .enlace-vuelta a:hover {
-    transform: scale(1.05);                      /* Crece un poquito */
-    background-color: rgba(255, 255, 255, 0.4);  /* Se vuelve un pelín más opaco */
-    box-shadow: 0 6px 20px rgba(255, 29, 176, 0.3); /* Sombra rosa al iluminarse */
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .gif-historia {
