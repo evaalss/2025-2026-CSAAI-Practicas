@@ -162,7 +162,7 @@ p, li {
     }
 
     .active {
-        border-bottom: 2px solid white; /* Un subrayado más fino para que no se vea tosco */
+        border-bottom: 2px solid rgb(255, 150, 246); /* Un subrayado más fino para que no se vea tosco */
     }
 }
 
