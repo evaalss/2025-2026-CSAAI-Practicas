@@ -152,6 +152,18 @@ p, li {
     .iresponsive {
         width: 100%;
     }
+    /* Ajustes específicos para el menú en el móvil */
+    .navbar a {
+        font-size: 1.1rem; /* Reducimos el tamaño de la letra */
+    }
+
+    .navbar li {
+        margin: 0 10px; /* Reducimos el espacio entre los botones */
+    }
+
+    .active {
+        border-bottom: 2px solid white; /* Un subrayado más fino para que no se vea tosco */
+    }
 }
 
 /* Más sobre diseño web responsive https://www.w3schools.com/css/css_rwd_intro.asp */
