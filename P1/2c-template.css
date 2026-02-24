@@ -152,17 +152,23 @@ p, li {
     .iresponsive {
         width: 100%;
     }
-    /* Ajustes específicos para el menú en el móvil */
+}
+
+@media screen and (max-width: 600px) {
+    .navbar ul {
+        flex-wrap: nowrap; /* Obligamos a que se mantengan en una sola línea */
+    }
+
     .navbar a {
-        font-size: 1.1rem; /* Reducimos el tamaño de la letra */
+        font-size: 0.85rem; /* Letra más pequeña solo en móvil para que quepa "Acerca de" */
     }
 
     .navbar li {
-        margin: 0 10px; /* Reducimos el espacio entre los botones */
+        margin: 0 5px; /* Margen mínimo en móvil */
     }
-
-    .active {
-        border-bottom: 2px solid rgb(255, 150, 246); /* Un subrayado más fino para que no se vea tosco */
+    
+    .columna {
+        width: 100%;
     }
 }
 
