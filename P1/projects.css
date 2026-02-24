@@ -1,0 +1,164 @@
+/* https://www.w3schools.com/howto/howto_css_two_columns.asp */
+/* https://developer.mozilla.org/es/docs/Web/CSS/box-sizing */
+/* Así definimos el comportamiento de caja para todos los elementos */
+* {
+    box-sizing: border-box;
+  }
+  
+/* Contenedor principal del menú sin el recuadro rosa */
+.navbar {
+    background-color: transparent; /* Esto quita el color rosa de fondo */
+    padding: 10px;
+    margin-bottom: 2px;
+}
+
+/* El resto de tu código (ul, li, a, .active) se queda igual */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: rgb(255, 29, 176); /* El mismo color del título */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.active {
+    border-bottom: 4px solid rgb(255, 29, 176);
+}
+/* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
+.columna {
+    float: left;
+    padding: 20px; 
+    min-height: 500px;
+    border-radius: 20px; 
+    margin-bottom: 20px;
+}
+
+body {
+    background-image: url('fondoprojects.webp');
+    background-size: cover;       
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+}
+
+
+h2 {
+    text-align: center;
+    color: rgb(255, 29, 176);
+}
+
+/* Contenedor flexible para las tarjetas */
+.contenedor-cards {
+    display: flex;
+    flex-wrap: wrap; /* Esto hace que se apilen en móvil */
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Estilo de la Tarjeta (Card) */
+/* Estilo de la Tarjeta (Card) actualizado */
+.card {
+    background-color: rgba(255, 255, 255, 0.25); /* Mucho más transparente */
+    border: 2px solid rgb(255, 29, 176);
+    border-radius: 15px;
+    padding: 25px;
+    width: 320px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px); /* Opcional: añade un desenfoque elegante al fondo */
+}
+
+/* Título centrado */
+.card h3 {
+    color: rgb(255, 29, 176);
+    margin-top: 0;
+    font-family: 'Georgia', serif;
+    text-align: center; /* Títulos centrados */
+}
+
+/* Descripción con la misma letra que el título */
+.card p {
+    color: rgb(255, 29, 176); /* Cambiado a blanco para que resalte sobre el fondo transparente */
+    line-height: 1.5;
+    font-family: 'Georgia', serif; /* Misma fuente que el título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para asegurar legibilidad */
+}
+
+/* Estilo del botón */
+.boton-card {
+    background-color: rgb(255, 29, 176);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+.boton-card:hover {
+    background-color: #d61896;
+}
+
+/* Enlace de vuelta al inicio */
+.enlace-vuelta {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.enlace-vuelta a {
+    color: rgb(255, 29, 176);
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.enlace-vuelta a:hover {
+    border-bottom: 1px solid rgb(255, 29, 176);
+}
+
+.gif-historia {
+    display: block;           /* hace que se comporte como bloque */
+    margin: 0 auto 20px auto; /* centra horizontalmente y deja espacio debajo */
+    width: 80%;               /* ajusta el tamaño a tu gusto */
+    max-width: 400px;         /* tamaño máximo para que no se haga gigante */
+    border-radius: 20px;      /* esquinas redondeadas */
+}
+
+
+/* Ajuste móvil para que las tarjetas ocupen todo el ancho */
+@media screen and (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .columna {
+      width: 100%;
+    }
+
+    .iresponsive {
+        width: 100%;
+    }
+}
+
+/* Más sobre diseño web responsive https://www.w3schools.com/css/css_rwd_intro.asp */
