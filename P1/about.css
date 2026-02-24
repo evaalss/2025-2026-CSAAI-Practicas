@@ -25,7 +25,7 @@
 }
 
 .navbar a {
-    color: rgb(255, 46, 151); /* El mismo color del título */
+    color: rgb(255, 29, 176); /* El mismo color del título */
     text-decoration: none;
     font-size: 1.2rem;
     font-family: 'Georgia', serif;
@@ -35,7 +35,7 @@
 }
 
 .active {
-    border-bottom: 4px solid rgba(255, 79, 167, 0.75);
+    border-bottom: 4px solid rgb(255, 29, 176);
 }
 
 body {
