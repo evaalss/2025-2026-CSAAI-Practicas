@@ -264,19 +264,22 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .navbar ul {
-        flex-wrap: nowrap; /* Obligamos a que se mantengan en una sola línea */
-    }
-
+    /* Forzamos el menú a ser pequeño y estar junto */
     .navbar a {
-        font-size: 1rem; /* Letra más pequeña solo en móvil para que quepa "Acerca de" */
+        font-size: 0.85rem !important; 
+        padding-bottom: 2px;
     }
 
     .navbar li {
-        margin: 0 5px; /* Margen mínimo en móvil */
+        margin: 0 8px !important; 
     }
-    
-    .columna {
+
+    .active {
+        border-bottom: 2px solid rgb(255, 29, 176);
+    }
+
+    /* Ajuste de tarjetas y columnas */
+    .card, .columna, .iresponsive {
         width: 100%;
     }
 }
