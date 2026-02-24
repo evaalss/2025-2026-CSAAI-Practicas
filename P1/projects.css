@@ -182,4 +182,26 @@ h2 {
     }
 }
 
+/* Ajuste móvil consolidado */
+@media screen and (max-width: 600px) {
+    /* Forzamos el menú a ser pequeño y estar junto */
+    .navbar a {
+        font-size: 0.85rem !important; 
+        padding-bottom: 2px;
+    }
+
+    .navbar li {
+        margin: 0 8px !important; 
+    }
+
+    .active {
+        border-bottom: 2px solid rgb(255, 29, 176);
+    }
+
+    /* Ajuste de tarjetas y columnas */
+    .card, .columna, .iresponsive {
+        width: 100%;
+    }
+}
+
 /* Más sobre diseño web responsive https://www.w3schools.com/css/css_rwd_intro.asp */
