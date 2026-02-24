@@ -160,7 +160,7 @@ p, li {
     }
 
     .navbar a {
-        font-size: 0.85rem; /* Letra más pequeña solo en móvil para que quepa "Acerca de" */
+        font-size: 1rem; /* Letra más pequeña solo en móvil para que quepa "Acerca de" */
     }
 
     .navbar li {
