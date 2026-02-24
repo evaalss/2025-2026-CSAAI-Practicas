@@ -8,8 +8,8 @@
 /* Contenedor principal del menú sin el recuadro rosa */
 .navbar {
     background-color: transparent; /* Esto quita el color rosa de fondo */
-    padding: 20px 0;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 2px;
 }
 
 /* El resto de tu código (ul, li, a, .active) se queda igual */
@@ -22,7 +22,7 @@
 }
 
 .navbar li {
-    margin: 0 30px;
+    margin: 0 15px;
 }
 
 .navbar a {
@@ -36,7 +36,7 @@
 }
 
 .active {
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid rgb(255, 150, 246);
 }
   
 /* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
