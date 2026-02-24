@@ -1,5 +1,43 @@
 /* --- Fondo distinto para About --- */
 
+* {
+    box-sizing: border-box;
+  }
+
+/* Contenedor principal del menú sin el recuadro rosa */
+.navbar {
+    background-color: transparent; /* Esto quita el color rosa de fondo */
+    padding: 10px;
+    margin-bottom: 2px;
+}
+
+/* El resto de tu código (ul, li, a, .active) se queda igual */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: rgb(255, 46, 151); /* El mismo color del título */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.active {
+    border-bottom: 4px solid rgba(255, 79, 167, 0.75);
+}
+
 body {
     background-image: url('fondobonito.jpg');
     background-size: cover;       
