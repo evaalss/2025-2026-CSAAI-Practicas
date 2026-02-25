@@ -4,15 +4,13 @@
 * {
     box-sizing: border-box;
   }
-  
-/* Contenedor principal del menú sin el recuadro rosa */
+
 .navbar {
-    background-color: transparent; /* Esto quita el color rosa de fondo */
+    background-color: transparent; 
     padding: 10px;
     margin-bottom: 2px;
 }
 
-/* El resto de tu código (ul, li, a, .active) se queda igual */
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -26,7 +24,7 @@
 }
 
 .navbar a {
-    color: rgb(255, 29, 176); /* El mismo color del título */
+    color: rgb(255, 29, 176); 
     text-decoration: none;
     font-size: 1.2rem;
     font-family: 'Georgia', serif;
@@ -38,7 +36,7 @@
 .active {
     border-bottom: 4px solid rgb(255, 29, 176);
 }
-/* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
+
 .columna {
     float: left;
     padding: 20px; 
@@ -60,19 +58,16 @@ h2 {
     color: rgb(255, 29, 176);
 }
 
-/* Contenedor flexible para las tarjetas */
 .contenedor-cards {
     display: flex;
-    flex-wrap: wrap; /* Esto hace que se apilen en móvil */
+    flex-wrap: wrap; 
     justify-content: center;
     gap: 25px;
     padding: 20px;
 }
 
-/* Estilo de la Tarjeta (Card) */
-/* Estilo de la Tarjeta (Card) actualizado */
 .card {
-    background-color: rgba(255, 255, 255, 0.25); /* Mucho más transparente */
+    background-color: rgba(255, 255, 255, 0.25); 
     border: 2px solid rgb(255, 29, 176);
     border-radius: 15px;
     padding: 25px;
@@ -82,58 +77,52 @@ h2 {
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease;
-    backdrop-filter: blur(5px); /* Opcional: añade un desenfoque elegante al fondo */
+    backdrop-filter: blur(5px); 
 }
 
-/* Título centrado */
 .card h3 {
     color: rgb(255, 29, 176);
     margin-top: 0;
     font-family: 'Georgia', serif;
-    text-align: center; /* Títulos centrados */
+    text-align: center; 
 }
 
-/* Descripción con la misma letra que el título */
 .card p {
-    color: rgb(255, 29, 176); /* Cambiado a blanco para que resalte sobre el fondo transparente */
+    color: rgb(255, 29, 176); 
     line-height: 1.5;
-    font-family: 'Georgia', serif; /* Misma fuente que el título */
+    font-family: 'Georgia', serif; 
 }
 
-/* Estilo del botón */
-/* Botones de las tarjetas totalmente redondeados */
 .boton-card {
-    background-color: rgb(255, 29, 176); /* Tu rosa Barbie */
+    background-color: rgb(255, 29, 176); 
     color: white;
     text-decoration: none;
     text-align: center;
     padding: 12px 20px;
-    border-radius: 15px; /* Valor alto para redondeo total */
+    border-radius: 15px; 
     font-weight: bold;
     font-family: 'Georgia', serif;
     margin-top: 20px;
     display: block;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(255, 29, 176, 0.3); /* Sombra rosa suave */
+    box-shadow: 0 4px 10px rgba(255, 29, 176, 0.3); 
 }
 
-/* Efecto al pasar el ratón por el botón */
 .boton-card:hover {
-    background-color: #d61896; /* Rosa más intenso */
-    transform: translateY(-2px); /* Pequeña elevación */
+    background-color: #d61896; 
+    transform: translateY(-2px); 
     box-shadow: 0 6px 15px rgba(255, 29, 176, 0.5);
 }
-/* Contenedor corregido para que no salgan cuadros extraños */
+
 .enlace-vuelta {
     width: 100%;
     text-align: center;
     margin: 50px 0;
-    clear: both; /* Esto evita que las columnas de arriba se monten sobre el botón */
+    clear: both; 
     display: block;
-    list-style: none; /* Por si acaso el móvil lo interpreta como una lista */
+    list-style: none; 
 }
 
-/* El botón refinado */
 .enlace-vuelta a {
     background-color: rgba(255, 255, 255, 0.25);
     border: 2px solid rgb(255, 29, 176);
@@ -147,7 +136,6 @@ h2 {
     backdrop-filter: blur(5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    /* Eliminamos cualquier decoración extra que añada el móvil */
     -webkit-appearance: none; 
 }
 
@@ -157,15 +145,13 @@ h2 {
 }
 
 .gif-historia {
-    display: block;           /* hace que se comporte como bloque */
-    margin: 0 auto 20px auto; /* centra horizontalmente y deja espacio debajo */
-    width: 80%;               /* ajusta el tamaño a tu gusto */
-    max-width: 400px;         /* tamaño máximo para que no se haga gigante */
-    border-radius: 20px;      /* esquinas redondeadas */
+    display: block;           
+    margin: 0 auto 20px auto; 
+    width: 80%;               
+    max-width: 400px;         
+    border-radius: 20px;      
 }
 
-
-/* Ajuste móvil para que las tarjetas ocupen todo el ancho */
 @media screen and (max-width: 600px) {
     .card {
         width: 100%;
@@ -182,9 +168,8 @@ h2 {
     }
 }
 
-/* Ajuste móvil consolidado */
 @media screen and (max-width: 600px) {
-    /* Forzamos el menú a ser pequeño y estar junto */
+
     .navbar a {
         font-size: 0.85rem !important; 
         padding-bottom: 2px;
@@ -198,7 +183,6 @@ h2 {
         border-bottom: 2px solid rgb(255, 29, 176);
     }
 
-    /* Ajuste de tarjetas y columnas */
     .card, .columna, .iresponsive {
         width: 100%;
     }

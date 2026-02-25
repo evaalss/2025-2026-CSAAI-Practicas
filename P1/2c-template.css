@@ -5,14 +5,12 @@
     box-sizing: border-box;
   }
 
-/* Contenedor principal del menú sin el recuadro rosa */
 .navbar {
-    background-color: transparent; /* Esto quita el color rosa de fondo */
+    background-color: transparent; 
     padding: 10px;
     margin-bottom: 2px;
 }
 
-/* El resto de tu código (ul, li, a, .active) se queda igual */
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -26,7 +24,7 @@
 }
 
 .navbar a {
-    color: rgb(255, 29, 176); /* El mismo color del título */
+    color: rgb(255, 29, 176); 
     text-decoration: none;
     font-size: 1.2rem;
     font-family: 'Georgia', serif;
@@ -38,8 +36,7 @@
 .active {
     border-bottom: 4px solid rgb(255, 29, 176);
 }
-  
-/* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
+
 .columna {
     float: left;
     padding: 20px; 
@@ -64,7 +61,6 @@ body {
 width: 75%;
 }
 
-/* Clear floats despues de las columnas para eliminar la superposición */
 .fila:after {
 content: "";
 display: table;
@@ -78,9 +74,6 @@ clear: both;
 #c2 {
     background-color: rgba(255, 142, 246, 0.6);
 }
-
-/* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
-/* posicionamiento de imágenes https://www.w3schools.com/css/css_positioning.asp */
 
 img {
     width: 100%;
@@ -99,45 +92,39 @@ h2 {
 
 p, li {
     color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 2px rgba(139, 0, 133, 0.3); /* Sombra suave para mejorar lectura */
-    font-size: 1.1rem; /* Opcional: para que se lea un poco más grande */
+    text-shadow: 1px 1px 2px rgba(139, 0, 133, 0.3); 
+    font-size: 1.1rem; 
 }
-/* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
-/* Así conseguimos que el contenido se vea bien en dispositvos móviles */
-
-/* --- Estilos para los cuadritos internos de experiencia --- */
 
 .tarjeta-mini {
-    background-color: rgba(243, 194, 245, 0.5); /* Blanco opaco para que se vea como un cuadro real */
+    background-color: rgba(243, 194, 245, 0.5); 
     padding: 15px;
-    margin-bottom: 15px;      /* Espacio entre un cuadrito y otro */
-    border-radius: 15px;      /* Esquinas redondeadas */
-    border: 1px solid white;  /* Borde fino blanco para resaltar */
-    width: 100%;              /* Ocupa todo el ancho de la columna c2 */
-    display: block;           /* Se asegura de que se comporte como un bloque */
+    margin-bottom: 15px;      
+    border-radius: 15px;      
+    border: 1px solid white;  
+    width: 100%;              
+    display: block;           
 }
 
 .tarjeta-mini p {
-    color: #ffffff !important;   /* Texto para que se lea perfecto sobre blanco */
+    color: #ffffff !important;   
     margin: 5px 0;
-    text-shadow: none;        /* Quitamos sombras para que no se vea borroso */
+    text-shadow: none;        
 }
 
 .iresponsive,
 .img-card {
-    border-radius: 20px;   /* esquinas redondeadas */
-    overflow: hidden;      /* MUY IMPORTANTE para que el zoom no se salga */
+    border-radius: 20px;   
+    overflow: hidden;      
     margin-bottom: 15px;
 }
 
-/* Imagen en sí */
 .iresponsive img,
 .img-card img {
     border-radius: 20px;
     transition: transform 0.4s ease;
 }
 
-/* Hover: zoom suave */
 .iresponsive img:hover,
 .img-card img:hover {
     transform: scale(1.08);
@@ -155,7 +142,6 @@ p, li {
 }
 
 @media screen and (max-width: 600px) {
-    /* Forzamos el menú a ser pequeño y estar junto */
     .navbar a {
         font-size: 0.85rem !important; 
         padding-bottom: 2px;
@@ -169,7 +155,6 @@ p, li {
         border-bottom: 2px solid rgb(255, 29, 176);
     }
 
-    /* Ajuste de tarjetas y columnas */
     .card, .columna, .iresponsive {
         width: 100%;
     }
