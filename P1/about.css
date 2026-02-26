@@ -1,17 +1,13 @@
-/* --- Fondo distinto para About --- */
-
 * {
     box-sizing: border-box;
   }
 
-/* Contenedor principal del menú sin el recuadro rosa */
 .navbar {
-    background-color: transparent; /* Esto quita el color rosa de fondo */
+    background-color: transparent; 
     padding: 10px;
     margin-bottom: 2px;
 }
 
-/* El resto de tu código (ul, li, a, .active) se queda igual */
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -25,7 +21,7 @@
 }
 
 .navbar a {
-    color: rgb(255, 29, 176); /* El mismo color del título */
+    color: rgb(255, 29, 176); 
     text-decoration: none;
     font-size: 1.2rem;
     font-family: 'Georgia', serif;
@@ -47,14 +43,12 @@ body {
     margin: 0; 
 } 
 
-/* Contenedor principal */
 .about-container {
     max-width: 900px;
     margin: auto;
     padding: 20px;
 }
 
-/* Imagen principal */
 .about-container img {
     border-radius: 25px;
     margin-bottom: 20px;
@@ -65,7 +59,6 @@ body {
     transform: scale(1.07);
 }
 
-/* Tarjetas de colores */
 .about-card {
     padding: 20px;
     border-radius: 20px;
@@ -75,14 +68,12 @@ body {
     animation: aparecer 0.8s ease;
 }
 
-/* Colores distintos */
 .historia { background-color: rgba(255, 105, 180, 0.75); }
 .ken      { background-color: rgba(255, 182, 193, 0.75); }
 .perro    { background-color: rgba(255, 160, 200, 0.75); }
 .coche    { background-color: rgba(255, 140, 200, 0.75); }
 .casa     { background-color: rgba(255, 120, 200, 0.75); }
 
-/* Botón volver */
 .boton-barbie {
     display: block;
     width: 200px;
@@ -103,33 +94,29 @@ body {
     transform: translateY(-2px);
 }
 
-/* --- Cuadro de la foto principal --- */
 .foto-principal {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: rgba(255, 29, 176, 0.7); /* 💗 rosa suave */
+    background-color: rgba(255, 29, 176, 0.7); 
     
     padding: 25px;
     max-width: 520px;
     margin: 0 auto 40px auto;
 
-    border-radius: 30px;        /* esquinas redondeadas */
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4); /* sombra elegante */
+    border-radius: 30px;        
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4); 
 }
 
 
-/* Imagen dentro del cuadro */
 .foto-principal img {
     width: 100%;
-    max-width: 480px;           /* ⬅ imagen grande */
+    max-width: 480px;           
     border-radius: 25px;
     transition: transform 0.4s ease;
 }
 
-
-/* Hover suave */
 .foto-principal img:hover {
     transform: scale(1.08);
 }
@@ -180,56 +167,53 @@ body {
 }
 
 .gif-historia {
-    display: block;           /* hace que se comporte como bloque */
-    margin: 0 auto 20px auto; /* centra horizontalmente y deja espacio debajo */
-    width: 80%;               /* ajusta el tamaño a tu gusto */
-    max-width: 400px;         /* tamaño máximo para que no se haga gigante */
-    border-radius: 20px;      /* esquinas redondeadas */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* opcional: sombra bonita */
+    display: block;           
+    margin: 0 auto 20px auto; 
+    width: 80%;               
+    max-width: 400px;         
+    border-radius: 20px;      
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
 }
 
 .titulo-sobre-mi {
-    text-align: center;       /* centra el texto horizontalmente */
-    color: rgb(255, 29, 176);           /* rosita Barbie brillante */
-    font-size: 2.5rem;        /* tamaño grande para destacar */
-    font-weight: bold;        /* que resalte */
-    margin: 30px 0;           /* espacio arriba y abajo */
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* opcional: sombra ligera para que destaque sobre el fondo */
+    text-align: center;       
+    color: rgb(255, 29, 176);           
+    font-size: 2.5rem;        
+    font-weight: bold;        
+    margin: 30px 0;           
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2); 
 }
 
 .fila-columnas {
-    display: flex;              /* activa Flexbox */
-    flex-wrap: wrap;            /* permite que bajen a otra fila en pantallas pequeñas */
-    gap: 20px;                  /* espacio entre columnas */
-    justify-content: center;    /* centra las columnas horizontalmente */
-    margin-top: 30px;           /* espacio encima */
+    display: flex;              
+    flex-wrap: wrap;            
+    gap: 20px;                  
+    justify-content: center;    
+    margin-top: 30px;           
 }
 
 .fila-columnas .cuadro {
-    flex: 1 1 220px;           /* crecen, encogen y base mínima de 220px */
-    max-width: 250px;           /* tamaño máximo para que no sean gigantes */
+    flex: 1 1 220px;           
+    max-width: 250px;           
 }
 
-/* Contenedor específico para el video, basado en tu estilo .cuadro */
 .seccion-video {
-    background-color: rgba(255, 29, 176, 0.7); /* El mismo rosa de tus cuadros */
-    max-width: 550px;    /* Aquí controlas que sea más pequeño */
-    margin: 40px auto;   /* Centrado horizontal */
+    background-color: rgba(255, 29, 176, 0.7); 
+    max-width: 550px;    
+    margin: 40px auto;   
     text-align: center;
 }
 
-/* Ajuste para el título dentro del cuadro de video */
 .seccion-video h2 {
-    color: rgb(253, 181, 241); /* El rosa claro que usas en tus otros h2 */
+    color: rgb(253, 181, 241); 
     margin-top: 0;
     font-size: 1.8rem;
 }
 
-/* Contenedor interno para que el video sea responsivo */
 .video-flexible {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Mantiene la forma del video */
+    aspect-ratio: 16 / 9; 
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -241,7 +225,6 @@ body {
     border: none;
 }
 
-/* Animación */
 @keyframes aparecer {
     from {
         opacity: 0;
@@ -264,7 +247,7 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    /* Forzamos el menú a ser pequeño y estar junto */
+
     .navbar a {
         font-size: 0.85rem !important; 
         padding-bottom: 2px;
@@ -278,7 +261,6 @@ body {
         border-bottom: 2px solid rgb(255, 29, 176);
     }
 
-    /* Ajuste de tarjetas y columnas */
     .card, .columna, .iresponsive {
         width: 100%;
     }
