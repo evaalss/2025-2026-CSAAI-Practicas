@@ -146,6 +146,15 @@ body {
     line-height: 1.6;
 }
 
+.cuadro {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.cuadro:hover {
+    transform: scale(1.06);
+    box-shadow: 0 12px 25px rgba(255, 20, 147, 0.45);
+}
+
 .historia {
     background-color: rgba(255, 29, 176, 0.7);
 }
