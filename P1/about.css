@@ -150,7 +150,7 @@ body {
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.cuadro:hover {
+.cuadro:not(.sin-hover):hover {
     transform: scale(1.06);
     box-shadow: 0 12px 25px rgba(255, 20, 147, 0.45);
 }
