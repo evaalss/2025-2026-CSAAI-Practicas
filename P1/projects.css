@@ -93,6 +93,11 @@ h2 {
     font-family: 'Georgia', serif; 
 }
 
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
 .boton-card {
     background-color: rgb(255, 29, 176); 
     color: white;

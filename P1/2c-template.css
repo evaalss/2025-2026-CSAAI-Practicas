@@ -112,6 +112,15 @@ p, li {
     text-shadow: none;        
 }
 
+.tarjeta-mini {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-mini:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+}
+
 .iresponsive,
 .img-card {
     border-radius: 20px;   
