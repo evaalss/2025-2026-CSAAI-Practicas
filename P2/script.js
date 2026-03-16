@@ -10,6 +10,9 @@ let gameEnded = false;
 const clickSound = new Audio('click.mp3');
 const boomSound = new Audio('explosion.mp3');
 const winSound = new Audio('victoria.mp3');
+const startSound = new Audio('start.mp3');
+const stopSound = new Audio('stop.mp3');
+const restartSound = new Audio('start.mp3');
 
 // Elementos del DOM
 const timerDisplay = document.getElementById('timer');
@@ -192,6 +195,9 @@ function setupEventListeners() {
     });
 
     btnStart.addEventListener('click', () => {
+        startSound.currentTime = 0;
+        startSound.play();
+
         if (!gameEnded) {
             startTimer();
             messageDisplay.textContent = "Cronómetro en marcha...";
@@ -199,11 +205,19 @@ function setupEventListeners() {
     });
 
     btnStop.addEventListener('click', () => {
+        stopSound.currentTime = 0;
+        stopSound.play();
         stopTimer();
         if (!gameEnded) messageDisplay.textContent = "Cronómetro detenido.";
     });
 
-    btnReset.addEventListener('click', resetGame);
+    btnReset.addEventListener('click', () => {
+        // === AÑADE ESTO AQUÍ ===
+        resetSound.currentTime = 0;
+        resetSound.play();
+
+        resetGame();
+    });
 }
 
 // Ejecutar al cargar
