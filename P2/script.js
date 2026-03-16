@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* global confetti */
+
 // Variables de estado del juego
 let secretKey = [];
 let attempts = 7;
@@ -6,7 +9,8 @@ let timerInterval = null;
 let milliseconds = 0;
 let isRunning = false;
 let gameEnded = false;
-// Carga de sonidos (ponlo al principio del archivo)
+
+// Carga de sonidos
 const boomSound = new Audio('explosion.mp3');
 const winSound = new Audio('victoria.mp3');
 const startSound = new Audio('start.mp3');
