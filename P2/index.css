@@ -1,0 +1,179 @@
+body {
+    background-color: #eea8d7;
+    color: #ff00b3;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    border: 3px solid #ff00b3;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffbefb;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 10px;
+}
+
+.display-panel {
+    border: 2px solid #ff00b3;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+}
+
+.secret-key {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.digit-box {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #ff00b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #ff4444; /* Rojo inicial */
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.digit-box.found {
+    color: #ff00b3;
+}
+
+.timer {
+    font-size: 3rem;
+    margin: 10px 0;
+    text-shadow: 0 0 8px #ff00b3;
+}
+
+.info-text {
+    font-size: 0.9rem;
+    min-height: 60px;
+    border-radius: 10px;
+}
+
+/* Teclado */
+.keypad {
+    border: 2px solid #ff00b3;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+    
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+button {
+    background: transparent;
+    border: 1px solid #ff00b3;
+    color: #ff00b3;
+    padding: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    border-radius: 10px;
+}
+
+button:active {
+    background-color: #000;
+    color: #000;
+}
+
+button:disabled {
+    border-color: #ff00b336;
+    color: #ff00b336;
+    cursor: not-allowed;
+}
+
+button:hover {
+    box-shadow: 0 0 20px #ff00b3, inset 0 0 10px #ff00b3;
+    transform: scale(1.05); 
+}
+
+.ctrl-btn { font-weight: bold; }
+.start, .stop, .reset { color: #ff4444; }
+
+#explosion-gif-container {
+    position: absolute; /* Se posiciona respecto al panel, no a la pantalla total */
+    top: 0;
+    left: 0;
+    width: 100%;       /* Ocupa el 100% del ancho de su padre (.display-panel) */
+    height: 100%;      /* Ocupa el 100% del alto de su padre */
+    z-index: 10;       /* Suficiente para tapar los números, pero no los botones de abajo */
+    background-color: black;
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px; /* Para que coincida con tus esquinas redondeadas */
+}
+
+#explosion-gif {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Para que el GIF se vea entero sin recortarse */
+}
+
+#explosion-gif-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    
+    /* CAMBIO AQUÍ: Eliminamos el fondo negro */
+    background-color: transparent; 
+    
+    display: none; /* Se activa por JS */
+    justify-content: center;
+    align-items: center;
+    
+    /* Esto evita que el GIF bloquee los clics si el ratón pasa por encima */
+    pointer-events: none; 
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    40% { transform: translate(3px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    80% { transform: translate(3px, 1px) rotate(-1deg); }
+    100% { transform: translate(1px, -2px) rotate(1deg); }
+}
+
+.vibrate {
+    animation: shake 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .digit-box { width: 45px; height: 45px; }
+    .timer { font-size: 2rem; }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego BOOM - JavaScript</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>B O O M</h1>
+        </header>
+
+        <main class="display-panel">
+            <div id="secret-key-container" class="secret-key">
+                <div class="digit-box" id="pos-0">*</div>
+                <div class="digit-box" id="pos-1">*</div>
+                <div class="digit-box" id="pos-2">*</div>
+                <div class="digit-box" id="pos-3">*</div>
+                <div id="explosion-gif-container" style="display: none;">
+                    <img id="explosion-gif" src="bomba.webp" alt="BOOM">
+                </div>
+            </div>
+
+            <div id="timer" class="timer">0:00:00</div>
+            
+            <div class="info-text">
+                <p>Intentos restantes: <span id="attempts-count">7</span></p>
+                <p id="game-message">Nueva partida preparada. Pulsa Start o un número para comenzar.</p>
+            </div>
+        </main>
+
+        <section class="keypad">
+            <div class="numbers-grid">
+                <button class="num-btn" data-val="7">7</button>
+                <button class="num-btn" data-val="8">8</button>
+                <button class="num-btn" data-val="9">9</button>
+                <button class="num-btn" data-val="4">4</button>
+                <button class="num-btn" data-val="5">5</button>
+                <button class="num-btn" data-val="6">6</button>
+                <button class="num-btn" data-val="1">1</button>
+                <button class="num-btn" data-val="2">2</button>
+                <button class="num-btn" data-val="3">3</button>
+                <div class="empty"></div>
+                <button class="num-btn" data-val="0">0</button>
+                <div class="empty"></div>
+            </div>
+
+            <div class="controls-grid">
+                <button id="btn-start" class="ctrl-btn start">Start</button>
+                <button id="btn-stop" class="ctrl-btn stop">Stop</button>
+                <button id="btn-reset" class="ctrl-btn reset">Reset</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
