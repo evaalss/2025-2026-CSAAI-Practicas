@@ -7,7 +7,6 @@ let milliseconds = 0;
 let isRunning = false;
 let gameEnded = false;
 // Carga de sonidos (ponlo al principio del archivo)
-const clickSound = new Audio('click.mp3');
 const boomSound = new Audio('explosion.mp3');
 const winSound = new Audio('victoria.mp3');
 const startSound = new Audio('start.mp3');
@@ -63,9 +62,6 @@ function stopTimer() {
 // Manejo de pulsación de número
 function handleNumberClick(e) {
     if (gameEnded) return;
-
-    clickSound.currentTime = 0;
-    clickSound.play();
 
     // Iniciar cronómetro si es la primera pulsación
     if (!isRunning) {
