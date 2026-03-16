@@ -12,7 +12,6 @@ const boomSound = new Audio('explosion.mp3');
 const winSound = new Audio('victoria.mp3');
 const startSound = new Audio('start.mp3');
 const stopSound = new Audio('stop.mp3');
-const restartSound = new Audio('start.mp3');
 
 // Elementos del DOM
 const timerDisplay = document.getElementById('timer');
@@ -211,13 +210,7 @@ function setupEventListeners() {
         if (!gameEnded) messageDisplay.textContent = "Cronómetro detenido.";
     });
 
-    btnReset.addEventListener('click', () => {
-        // === AÑADE ESTO AQUÍ ===
-        resetSound.currentTime = 0;
-        resetSound.play();
-
-        resetGame();
-    });
+    btnReset.addEventListener('click', resetGame);
 }
 
 // Ejecutar al cargar
