@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 /* global confetti */
 
-// Variables de estado del juego
 let secretKey = [];
 let attempts = 7;
 let foundCount = 0;
@@ -10,13 +9,11 @@ let milliseconds = 0;
 let isRunning = false;
 let gameEnded = false;
 
-// Carga de sonidos
 const boomSound = new Audio('explosion.mp3');
 const winSound = new Audio('victoria.mp3');
 const startSound = new Audio('start.mp3');
 const stopSound = new Audio('stop.mp3');
 
-// Elementos del DOM
 const timerDisplay = document.getElementById('timer');
 const attemptsDisplay = document.getElementById('attempts-count');
 const messageDisplay = document.getElementById('game-message');
@@ -25,13 +22,11 @@ const btnStart = document.getElementById('btn-start');
 const btnStop = document.getElementById('btn-stop');
 const btnReset = document.getElementById('btn-reset');
 
-// Inicialización
 function init() {
     generateSecretKey();
     setupEventListeners();
 }
 
-// Generar clave de 4 dígitos distintos
 function generateSecretKey() {
     secretKey = [];
     while (secretKey.length < 4) {
@@ -41,7 +36,6 @@ function generateSecretKey() {
     console.log("Clave secreta (trampa):", secretKey); // Solo para desarrollo
 }
 
-// Lógica del Cronómetro
 function updateTimer() {
     milliseconds += 10;
     let mins = Math.floor(milliseconds / 60000);
@@ -63,24 +57,21 @@ function stopTimer() {
     clearInterval(timerInterval);
 }
 
-// Manejo de pulsación de número
 function handleNumberClick(e) {
     if (gameEnded) return;
 
-    // Iniciar cronómetro si es la primera pulsación
     if (!isRunning) {
         startTimer();
         messageDisplay.textContent = "¡Bomba activada! Sigue buscando.";
     }
 
     const val = e.target.dataset.val;
-    e.target.disabled = true; // Desactivar botón visualmente
+    e.target.disabled = true; 
     attempts--;
     attemptsDisplay.textContent = attempts;
 
     let foundInThisTurn = false;
     
-    // Comprobar si el número está en la clave
     secretKey.forEach((digit, index) => {
         if (digit === val) {
             const box = document.getElementById(`pos-${index}`);
@@ -97,7 +88,6 @@ function handleNumberClick(e) {
         messageDisplay.textContent = `El número ${val} no está en la clave.`;
     }
 
-    // ... viene de la línea 83 (el final del forEach)
 
     if (foundInThisTurn) {
         messageDisplay.textContent = `Has acertado el número ${val}. Sigue así.`;
@@ -110,17 +100,16 @@ function handleNumberClick(e) {
         setTimeout(() => panel.classList.remove('vibrate'), 300);
     }
 
-    // Después de esto vendría la función checkGameStatus();
 
     checkGameStatus();
 }
 
 function checkGameStatus() {
-    // Victoria
+
     if (foundCount === 4) {
         endGame(true);
     } 
-    // Derrota
+
     else if (attempts === 0) {
         endGame(false);
     }
@@ -147,19 +136,19 @@ function endGame(victory) {
         messageDisplay.style.color = "#ff4444";
         boomSound.currentTime = 0;
         boomSound.play();
-        // Mostrar la clave correcta al perder
+
         secretKey.forEach((digit, index) => {
             document.getElementById(`pos-${index}`).textContent = digit;
         });
-        // Busca donde pones el mensaje de derrota y añade esto:
+
         document.getElementById('explosion-gif-container').style.display = 'block';}
             
-    // Bloquear todos los botones numéricos al terminar
+
     numButtons.forEach(btn => btn.disabled = true);
 }
 
 function resetGame() {
-    // Añade esto para que el GIF desaparezca al darle a Reset:
+
     document.getElementById('explosion-gif-container').style.display = 'none';
     stopTimer();
     milliseconds = 0;
@@ -167,8 +156,7 @@ function resetGame() {
     foundCount = 0;
     gameEnded = false;
     isRunning = false;
-    
-    // Resetear UI
+
     timerDisplay.textContent = "0:00:00";
     attemptsDisplay.textContent = attempts;
     messageDisplay.textContent = "Nueva partida preparada. Pulsa Start o un número para comenzar.";
@@ -187,7 +175,6 @@ function resetGame() {
     generateSecretKey();
 }
 
-// Configurar eventos
 function setupEventListeners() {
     numButtons.forEach(btn => {
         btn.addEventListener('click', handleNumberClick);
@@ -213,5 +200,4 @@ function setupEventListeners() {
     btnReset.addEventListener('click', resetGame);
 }
 
-// Ejecutar al cargar
 init();
