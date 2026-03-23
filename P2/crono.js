@@ -33,7 +33,7 @@ function generateSecretKey() {
         let r = Math.floor(Math.random() * 10).toString();
         if (!secretKey.includes(r)) secretKey.push(r);
     }
-    console.log("Clave secreta (trampa):", secretKey); // Solo para desarrollo
+    console.log("Clave secreta (trampa):", secretKey);
 }
 
 function updateTimer() {
@@ -92,7 +92,7 @@ function handleNumberClick(e) {
     if (foundInThisTurn) {
         messageDisplay.textContent = `Has acertado el número ${val}. Sigue así.`;
     } else {
-        // === AQUÍ VA EL EFECTO DE VIBRACIÓN ===
+        
         messageDisplay.textContent = `El número ${val} no está en la clave.`;
         
         const panel = document.querySelector('.display-panel');
