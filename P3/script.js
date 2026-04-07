@@ -11,7 +11,7 @@ const imgExplosion = new Image(); imgExplosion.src = 'explosion.png';
 const sndDisparo = new Audio('disparo.mp3');
 const sndVictoria = new Audio('victoria.mp3');
 const sndDerrota = new Audio('derrota.mp3');
-const sndHerido = new Audio('herido.mp3'); // Sonido de vida perdida
+const sndHerido = new Audio('herido.mp3');
 
 // 2. ESTADO
 let score = 0;
@@ -27,13 +27,20 @@ let explosions = [];
 let alienDirection = 1;
 let alienBaseSpeed = 1.3;
 
-// 3. INICIO
+// 3. INICIO Y DESBLOQUEO DE AUDIO
 function startGame() {
+    // "Despertar" sonidos para móvil
+    [sndDisparo, sndVictoria, sndDerrota, sndHerido].forEach(s => {
+        s.play().then(() => { s.pause(); s.currentTime = 0; }).catch(() => {});
+    });
+
     document.getElementById('start-screen').style.display = 'none';
     gameActive = true;
+    
     if (window.innerWidth <= 850) {
-        document.getElementById('mobile-controls').style.display = 'flex';
+        document.getElementById('mobile-controls-wrapper').style.display = 'block';
     }
+    
     createFleet();
     requestAnimationFrame(gameLoop);
 }
@@ -47,21 +54,20 @@ function createFleet() {
     }
 }
 
-// 4. CONTROLES
+// 4. CONTROLES (Teclado y Táctil)
 const keys = {};
 window.onkeydown = (e) => keys[e.key] = true;
 window.onkeyup = (e) => keys[e.key] = false;
 
-const btnLeft = document.getElementById('btn-left');
-const btnRight = document.getElementById('btn-right');
-const btnShoot = document.getElementById('btn-shoot');
+const setupBtn = (id, key) => {
+    const btn = document.getElementById(id);
+    btn.addEventListener('touchstart', (e) => { e.preventDefault(); keys[key] = true; });
+    btn.addEventListener('touchend', (e) => { e.preventDefault(); keys[key] = false; });
+};
 
-btnLeft.ontouchstart = (e) => { e.preventDefault(); keys['ArrowLeft'] = true; };
-btnLeft.ontouchend = () => keys['ArrowLeft'] = false;
-btnRight.ontouchstart = (e) => { e.preventDefault(); keys['ArrowRight'] = true; };
-btnRight.ontouchend = () => keys['ArrowRight'] = false;
-btnShoot.ontouchstart = (e) => { e.preventDefault(); keys[' '] = true; };
-btnShoot.ontouchend = () => keys[' '] = false;
+setupBtn('btn-left', 'ArrowLeft');
+setupBtn('btn-right', 'ArrowRight');
+setupBtn('btn-shoot', ' ');
 
 function drawImageSafe(img, x, y, w, h, fallbackColor) {
     if (img.complete && img.naturalWidth !== 0) {
@@ -86,7 +92,7 @@ function update() {
         keys[' '] = false; 
     }
 
-    if (energy < 100) energy += 0.9;
+    if (energy < 100) energy += 0.9; // Recarga rápida
     document.getElementById('energy').value = energy;
 
     const aliveCount = aliens.filter(a => a.alive).length;
@@ -105,6 +111,7 @@ function update() {
         aliens.forEach(a => { if (a.alive) a.y += 25; });
     }
 
+    // Colisiones proyectiles
     for (let i = bullets.length - 1; i >= 0; i--) {
         let b = bullets[i]; b.y -= b.speed;
         let hit = false;
@@ -120,9 +127,11 @@ function update() {
         if (hit || b.y < 0) bullets.splice(i, 1);
     }
 
+    // IA Enemiga
     if (Math.random() < 0.02 && aliveCount > 0) {
-        const shooter = aliens.filter(a => a.alive)[Math.floor(Math.random() * aliveCount)];
-        enemyBullets.push({ x: shooter.x + 20, y: shooter.y + 40, speed: 4 });
+        const shooters = aliens.filter(a => a.alive);
+        const s = shooters[Math.floor(Math.random() * aliveCount)];
+        enemyBullets.push({ x: s.x + 20, y: s.y + 40, speed: 4 });
     }
 
     for (let i = enemyBullets.length - 1; i >= 0; i--) {
@@ -131,13 +140,7 @@ function update() {
             enemyBullets.splice(i, 1);
             lives--;
             document.getElementById('lives').innerText = lives;
-            
-            // Sonido de vida perdida
-            if (lives > 0) {
-                sndHerido.currentTime = 0;
-                sndHerido.play().catch(() => {});
-            }
-
+            if (lives > 0) { sndHerido.currentTime = 0; sndHerido.play().catch(() => {}); }
             if (lives <= 0) endGame("death");
         } else if (eb.y > canvas.height) enemyBullets.splice(i, 1);
     }
@@ -155,10 +158,8 @@ function draw() {
         exp.timer--;
         if (exp.timer <= 0) explosions.splice(i, 1);
     }
-    ctx.fillStyle = "#32E0C4"; 
-    bullets.forEach(b => ctx.fillRect(b.x, b.y, 4, 12));
-    ctx.fillStyle = "#E74C3C"; 
-    enemyBullets.forEach(eb => ctx.fillRect(eb.x, eb.y, 4, 12));
+    ctx.fillStyle = "#32E0C4"; bullets.forEach(b => ctx.fillRect(b.x, b.y, 4, 12));
+    ctx.fillStyle = "#E74C3C"; enemyBullets.forEach(eb => ctx.fillRect(eb.x, eb.y, 4, 12));
 }
 
 function gameLoop() {

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Invasión Alienígena: Misión Centauri</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">  
+    <link rel="shortcut icon" href="alien.jpeg">
 </head>
 <body>
     <div id="game-container">
@@ -30,10 +31,12 @@
 
         <canvas id="gameCanvas" width="800" height="600"></canvas>
 
-        <div id="mobile-controls">
-            <button id="btn-left" class="touch-btn">◀</button>
-            <button id="btn-shoot" class="touch-btn">FUEGO</button>
-            <button id="btn-right" class="touch-btn">▶</button>
+        <div id="mobile-controls-wrapper">
+            <div id="mobile-controls">
+                <button id="btn-left" class="touch-btn">◀</button>
+                <button id="btn-shoot" class="touch-btn">FUEGO</button>
+                <button id="btn-right" class="touch-btn">▶</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

@@ -7,7 +7,8 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    touch-action: none; /* Evita gestos del navegador en móvil */
 }
 
 #game-container {
@@ -39,6 +40,7 @@ canvas {
     max-width: 100%;
     height: auto;
     display: block;
+    box-sizing: border-box;
     border-radius: 0 0 8px 8px;
 }
 
@@ -48,6 +50,7 @@ progress {
     accent-color: #E74C3C;
 }
 
+/* Pantallas de mensaje */
 #start-screen, #game-over-screen {
     position: absolute;
     top: 50%;
@@ -55,7 +58,7 @@ progress {
     transform: translate(-50%, -50%);
     background: #1A1F2B;
     border: 5px solid #ECF0F1;
-    padding: 40px;
+    padding: 30px;
     text-align: center;
     z-index: 200;
     width: 450px;
@@ -63,9 +66,10 @@ progress {
     box-shadow: 0 0 50px rgba(0,0,0,0.8);
 }
 
-#start-screen h1 { color: #32E0C4; font-size: 2.2rem; }
-#final-message { font-size: 2.5rem; text-shadow: 2px 2px 0px #000; line-height: 1.2; }
+#start-screen h1 { color: #32E0C4; }
+#final-message { font-size: 2.2rem; text-shadow: 2px 2px 0px #000; line-height: 1.2; }
 
+/* Botones y Controles */
 button {
     background: #32E0C4;
     color: #1A1F2B;
@@ -77,25 +81,41 @@ button {
     border-radius: 4px;
 }
 
-button:hover { background: #ECF0F1; }
-
-#mobile-controls {
+#mobile-controls-wrapper {
     display: none;
     width: 100%;
-    justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 20px;
+}
+
+#mobile-controls {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
 }
 
 .touch-btn {
-    width: 70px;
-    height: 70px;
-    background: rgba(236, 240, 241, 0.1);
-    border: 3px solid #ECF0F1;
-    color: #ECF0F1;
+    width: 75px;
+    height: 75px;
+    background: rgba(50, 224, 196, 0.2);
+    border: 3px solid #32E0C4;
+    color: #32E0C4;
+    font-size: 1.5rem;
     border-radius: 50%;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#btn-shoot {
+    width: 90px;
+    height: 90px;
+    background: rgba(231, 76, 60, 0.2);
+    border-color: #E74C3C;
+    color: #E74C3C;
 }
 
 @media (max-width: 850px) {
     #game-container { width: 95vw; }
-    #start-screen, #game-over-screen { width: 85%; }
+    #mobile-controls-wrapper { display: block; }
 }
