@@ -6,11 +6,12 @@ canvas.height = 600;
 // 1. RECURSOS
 const imgPlayer = new Image(); imgPlayer.src = 'player.png';
 const imgAlien = new Image(); imgAlien.src = 'alien.webp';
-const imgExplosion = new Image(); imgExplosion.src = 'explosion.webp';
+const imgExplosion = new Image(); imgExplosion.src = 'explosion.png';
 
 const sndDisparo = new Audio('disparo.mp3');
 const sndVictoria = new Audio('victoria.mp3');
 const sndDerrota = new Audio('derrota.mp3');
+const sndHerido = new Audio('herido.mp3'); // Sonido de vida perdida
 
 // 2. ESTADO
 let score = 0;
@@ -96,7 +97,6 @@ function update() {
         if (!a.alive) return;
         a.x += currentSpeed;
         if (a.x > canvas.width - a.w || a.x < 0) reachEdge = true;
-        // CONDICIÓN: Si llegan abajo
         if (a.y + a.h >= player.y) endGame("invasion");
     });
 
@@ -131,12 +131,17 @@ function update() {
             enemyBullets.splice(i, 1);
             lives--;
             document.getElementById('lives').innerText = lives;
-            // CONDICIÓN: Si te matan
+            
+            // Sonido de vida perdida
+            if (lives > 0) {
+                sndHerido.currentTime = 0;
+                sndHerido.play().catch(() => {});
+            }
+
             if (lives <= 0) endGame("death");
         } else if (eb.y > canvas.height) enemyBullets.splice(i, 1);
     }
 
-    // CONDICIÓN: Si ganas
     if (aliveCount === 0) endGame("victory");
 }
 
@@ -169,15 +174,15 @@ function endGame(reason) {
     const msg = document.getElementById('final-message');
 
     if (reason === "victory") {
-        msg.innerText = "¡FLOTA ALIENÍGENA ENVIADA AL DESGUACE!";
+        msg.innerText = "¡ESTA NOCHE SE CENA ALIENÍGENA!";
         msg.style.color = "#32E0C4";
         sndVictoria.play().catch(() => {});
     } else if (reason === "invasion") {
-        msg.innerText = "¡NOS INVADEN! (Buscaban aparcamiento)";
-        msg.style.color = "#FFD700"; // Dorado/Amarillo aviso
+        msg.innerText = "¡PÁGAME EL ALQUILER, TERRÍCOLA!\n(Han aterrizado)";
+        msg.style.color = "#FFD700"; 
         sndDerrota.play().catch(() => {});
     } else if (reason === "death") {
-        msg.innerText = "¡HOUSTON, TENEMOS UN PROBLEMA... MUY GORDO!";
+        msg.innerText = "¡TE HAN CONVERTIDO EN CHATARRA!\n(Sin vidas)";
         msg.style.color = "#E74C3C";
         sndDerrota.play().catch(() => {});
     }
