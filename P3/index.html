@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Invasión Alienígena: Misión Centauri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen">
+            <h1>INVASIÓN ALIENÍGENA</h1>
+            <p>Defiende el sector Canva Centauri de la flota hostil.</p>
+            <button id="btn-start" onclick="startGame()">INICIAR MISIÓN</button>
+        </div>
+
+        <div id="game-over-screen" style="display: none;">
+            <h1 id="final-message">¡MENSAJE!</h1>
+            <p id="final-score">Puntuación: 0</p>
+            <button onclick="location.reload()">¿OTRA MONEDITA?</button>
+        </div>
+
+        <div id="hud">
+            <span>PUNTOS: <b id="score">0</b></span>
+            <span>VIDAS: <b id="lives">3</b></span>
+            <div id="energy-bar-ui">
+                ENERGÍA: <progress id="energy" value="100" max="100"></progress>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <div id="mobile-controls">
+            <button id="btn-left" class="touch-btn">◀</button>
+            <button id="btn-shoot" class="touch-btn">FUEGO</button>
+            <button id="btn-right" class="touch-btn">▶</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

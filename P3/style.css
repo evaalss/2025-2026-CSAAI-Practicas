@@ -1,0 +1,101 @@
+body {
+    background-color: #101520;
+    color: #ECF0F1;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+}
+
+#hud {
+    width: 100%;
+    border: 3px solid #34495E;
+    background: #1A1F2B;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border-radius: 8px 8px 0 0;
+}
+
+#hud b { color: #32E0C4; }
+
+canvas {
+    border: 4px solid #ECF0F1;
+    background-color: #080A10;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0 0 8px 8px;
+}
+
+progress {
+    width: 120px;
+    height: 12px;
+    accent-color: #E74C3C;
+}
+
+#start-screen, #game-over-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1A1F2B;
+    border: 5px solid #ECF0F1;
+    padding: 40px;
+    text-align: center;
+    z-index: 200;
+    width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}
+
+#start-screen h1 { color: #32E0C4; font-size: 2.2rem; }
+#final-message { font-size: 2.5rem; text-shadow: 2px 2px 0px #000; line-height: 1.2; }
+
+button {
+    background: #32E0C4;
+    color: #1A1F2B;
+    border: none;
+    padding: 15px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 4px;
+}
+
+button:hover { background: #ECF0F1; }
+
+#mobile-controls {
+    display: none;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.touch-btn {
+    width: 70px;
+    height: 70px;
+    background: rgba(236, 240, 241, 0.1);
+    border: 3px solid #ECF0F1;
+    color: #ECF0F1;
+    border-radius: 50%;
+}
+
+@media (max-width: 850px) {
+    #game-container { width: 95vw; }
+    #start-screen, #game-over-screen { width: 85%; }
+}
