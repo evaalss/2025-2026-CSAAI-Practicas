@@ -6,7 +6,7 @@ canvas.height = 600;
 // 1. RECURSOS
 const imgPlayer = new Image(); imgPlayer.src = 'player.png';
 const imgAlien = new Image(); imgAlien.src = 'alien.webp';
-const imgExplosion = new Image(); imgExplosion.src = 'explosion.png';
+const imgExplosion = new Image(); imgExplosion.src = 'explosion.webp';
 
 const sndDisparo = new Audio('disparo.mp3');
 const sndVictoria = new Audio('victoria.mp3');
