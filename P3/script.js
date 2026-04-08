@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 800;
@@ -78,8 +79,8 @@ function drawImageSafe(img, x, y, w, h, fallbackColor) {
 function update() {
     if (!gameActive) return;
 
-    if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
-    if (keys['ArrowRight'] && player.x < canvas.width - player.w) player.x += player.speed;
+    if (keys.ArrowLeft && player.x > 0) player.x -= player.speed;
+    if (keys.ArrowRight && player.x < canvas.width - player.w) player.x += player.speed;
 
     if (keys[' '] && energy >= 20) {
         bullets.push({ x: player.x + player.w / 2 - 2, y: player.y, speed: 9 });
@@ -162,6 +163,8 @@ function gameLoop() {
     update(); draw();
     requestAnimationFrame(gameLoop);
 }
+
+window.startGame = startGame;
 
 function endGame(reason) {
     gameActive = false;
