@@ -50,7 +50,6 @@ progress {
     accent-color: #E74C3C;
 }
 
-/* Pantallas de mensaje */
 #start-screen, #game-over-screen {
     position: absolute;
     top: 50%;
@@ -69,7 +68,6 @@ progress {
 #start-screen h1 { color: #32E0C4; }
 #final-message { font-size: 2.2rem; text-shadow: 2px 2px 0px #000; line-height: 1.2; }
 
-/* Botones y Controles */
 button {
     background: #32E0C4;
     color: #1A1F2B;

@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 600;
 
-// 1. RECURSOS
 const imgPlayer = new Image(); imgPlayer.src = 'player.png';
 const imgAlien = new Image(); imgAlien.src = 'alien.webp';
 const imgExplosion = new Image(); imgExplosion.src = 'explosion.webp';
@@ -13,7 +12,6 @@ const sndVictoria = new Audio('victoria.mp3');
 const sndDerrota = new Audio('derrota.mp3');
 const sndHerido = new Audio('herido.mp3');
 
-// 2. ESTADO
 let score = 0;
 let lives = 3;
 let energy = 100;
@@ -54,7 +52,6 @@ function createFleet() {
     }
 }
 
-// 4. CONTROLES (Teclado y Táctil)
 const keys = {};
 window.onkeydown = (e) => keys[e.key] = true;
 window.onkeyup = (e) => keys[e.key] = false;
@@ -111,7 +108,6 @@ function update() {
         aliens.forEach(a => { if (a.alive) a.y += 25; });
     }
 
-    // Colisiones proyectiles
     for (let i = bullets.length - 1; i >= 0; i--) {
         let b = bullets[i]; b.y -= b.speed;
         let hit = false;
@@ -127,7 +123,6 @@ function update() {
         if (hit || b.y < 0) bullets.splice(i, 1);
     }
 
-    // IA Enemiga
     if (Math.random() < 0.02 && aliveCount > 0) {
         const shooters = aliens.filter(a => a.alive);
         const s = shooters[Math.floor(Math.random() * aliveCount)];
