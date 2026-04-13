@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat The Word</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <h1>Beat The Word</h1>
+                <p>Sigue la secuencia al ritmo del Beat</p>
+            </div>
+
+            <div class="panel instructions">
+                <h3>Cómo funciona</h3>
+                <p>El juego recorre siempre las 8 imágenes de izquierda a derecha y de arriba abajo. Tienes que decir la palabra correcta antes del siguiente salto.</p>
+            </div>
+
+            <div class="panel config">
+                <h3>Configuración</h3>
+                <div class="control-group">
+                    <label for="sequence-select">Secuencia</label>
+                    <select id="sequence-select">
+                        <option value="casa_cama">Casa / Cama</option>
+                        <option value="pato_gato">Pato / Gato</option>
+                        <option value="queso_beso">Queso / Beso</option>
+                        <option value="luna_cuna">Luna / Cuna</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="level-select">Nivel inicial</label>
+                    <select id="level-select">
+                        <option value="1">Nivel 1</option>
+                        <option value="2">Nivel 2</option>
+                        <option value="3">Nivel 3</option>
+                        <option value="4">Nivel 4</option>
+                        <option value="5">Nivel 5</option>
+                    </select>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="show-labels" checked>
+                    <label for="show-labels">Mostrar título en las tarjetas</label>
+                </div>
+            </div>
+
+            <div class="panel actions">
+                <button id="btn-start" class="btn primary">Empezar partida</button>
+                <button id="btn-stop" class="btn secondary" disabled>Detener</button>
+            </div>
+        </aside>
+
+        <main class="main-area">
+            <div class="top-bar">
+                <div class="stat-box">
+                    <span>Nivel</span>
+                    <strong id="display-level">1/5</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Tiempo</span>
+                    <strong id="display-time">0.0s</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Estado</span>
+                    <strong id="display-state">En espera</strong>
+                </div>
+                <button id="btn-music" class="btn-music">🎵 Música: OFF</button>
+            </div>
+
+            <div class="main-display">
+                <div class="avatar-box">
+                    <div class="avatar">😃</div>
+                </div>
+                <div class="message-box">
+                    <h2 id="main-message">Pulsa "Empezar"</h2>
+                </div>
+            </div>
+
+            <div class="grid" id="game-grid">
+                </div>
+        </main>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
