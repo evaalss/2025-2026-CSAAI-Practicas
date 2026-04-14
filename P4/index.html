@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beat The Word</title>
+    <title>Beat The Word - Chic Edition</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
 
             <div class="panel instructions">
                 <h3>Cómo funciona</h3>
-                <p>El juego recorre siempre las 8 imágenes de izquierda a derecha y de arriba abajo. Tienes que decir la palabra correcta antes del siguiente salto.</p>
+                <p>El juego recorre las 8 imágenes. Tienes que decir la palabra correcta antes del próximo beat.</p>
             </div>
 
             <div class="panel config">
                 <h3>Configuración</h3>
                 <div class="control-group">
-                    <label for="sequence-select">Secuencia</label>
+                    <label>Secuencia</label>
                     <select id="sequence-select">
                         <option value="casa_cama">Casa / Cama</option>
                         <option value="pato_gato">Pato / Gato</option>
@@ -31,7 +31,7 @@
                     </select>
                 </div>
                 <div class="control-group">
-                    <label for="level-select">Nivel inicial</label>
+                    <label>Nivel inicial</label>
                     <select id="level-select">
                         <option value="1">Nivel 1</option>
                         <option value="2">Nivel 2</option>
@@ -42,12 +42,14 @@
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="show-labels" checked>
-                    <label for="show-labels">Mostrar título en las tarjetas</label>
+                    <label for="show-labels">Mostrar títulos</label>
                 </div>
+
+                <button id="btn-music" class="btn-music">Música 🎶​: OFF</button>
             </div>
 
             <div class="panel actions">
-                <button id="btn-start" class="btn primary">Empezar</button>
+                <button id="btn-start" class="btn primary">Empezar partida</button>
                 <button id="btn-stop" class="btn secondary" disabled>Detener</button>
             </div>
         </aside>
@@ -66,22 +68,18 @@
                     <span>Estado</span>
                     <strong id="display-state">En espera</strong>
                 </div>
-                <button id="btn-music" class="btn-music">Música 🎶​: OFF</button>
             </div>
 
             <div class="main-display">
                 <div class="avatar-box">
-                    <div class="avatar">
-                        <img src="avatar.avif" class="avatar-img" alt="Avatar">
-                    </div>
+                    <img src="avatar.avif" class="avatar-img" alt="Avatar">
                 </div>
                 <div class="message-box">
                     <h2 id="main-message">Pulsa "Empezar"</h2>
                 </div>
             </div>
 
-            <div class="grid" id="game-grid">
-                </div>
+            <div class="grid" id="game-grid"></div>
         </main>
     </div>
 
