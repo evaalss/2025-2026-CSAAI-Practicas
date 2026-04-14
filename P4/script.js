@@ -99,9 +99,12 @@ function startGame() {
     selectSequence.disabled = true;
     selectLevel.disabled = true;
 
-    // Solo suena si el botón dice exactamente "Música: ON"
+    // --- SOLUCIÓN AQUÍ ---
+    // Comprobamos si el usuario dejó el interruptor en ON antes de empezar
     if (btnMusic.innerText === "Música: ON") {
-        bgMusic.play().catch(e => console.log("Error al reproducir:", e));
+        bgMusic.play().catch(e => {
+            console.log("El navegador requiere que interactúes con la página primero.");
+        });
     }
     
     startTimer();
