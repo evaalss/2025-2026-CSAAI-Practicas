@@ -101,7 +101,7 @@ function startGame() {
 
     // --- LÓGICA DE MÚSICA INTELIGENTE ---
     // Solo suena si el texto del botón dice ON
-    if (btnMusic.innerText === "<µ Música: ON") {
+    if (btnMusic.innerText === "Música 🎶​: ON") {
         bgMusic.play().catch(e => console.log("Error al reproducir:", e));
     }
     
@@ -124,7 +124,7 @@ function stopGame() {
     
     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
     bgMusic.pause();
-    btnMusic.innerText = "🎵 Música: OFF";
+    btnMusic.innerText = "Música 🎶​: OFF";
 }
 
 function startTimer() {
