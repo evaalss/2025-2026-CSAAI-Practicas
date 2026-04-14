@@ -26,7 +26,7 @@ const levelDistributions = {
     5: [0, 1, 1, 0, 1, 0, 0, 1] 
 };
 
-const speeds = { 1: 1200, 2: 1000, 3: 800, 4: 600, 5: 400 };
+const speeds = { 1: 1000, 2: 800, 3: 600, 4: 450, 5: 325 };
 
 let isPlaying = false;
 let currentLevel = 1;
