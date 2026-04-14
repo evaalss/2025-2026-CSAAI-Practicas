@@ -195,13 +195,13 @@ function finishRound() {
 
 function toggleMusic() {
     if (btnMusic.innerText.includes("OFF")) {
-        btnMusic.innerText = "Música: ON";
+        btnMusic.innerText = "Música 🎶​: ON";
         // Si ya estamos jugando, que suene ya
         if (isPlaying) {
             bgMusic.play().catch(e => {});
         }
     } else {
-        btnMusic.innerText = "Música: OFF";
+        btnMusic.innerText = "Música 🎶​: OFF";
         bgMusic.pause();
     }
 }
