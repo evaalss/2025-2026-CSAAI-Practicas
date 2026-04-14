@@ -194,14 +194,14 @@ function finishRound() {
 function toggleMusic() {
     if (bgMusic.paused) {
         // Solo cambiamos el texto para indicar que "queremos" música
-        btnMusic.innerText = "<µ Música: ON";
+        btnMusic.innerText = "Música 🎶​: ON";
         // Si el juego YA está en marcha, entonces sí la activamos ya
         if (isPlaying) {
             bgMusic.play();
         }
     } else {
         bgMusic.pause();
-        btnMusic.innerText = "<µ Música: OFF";
+        btnMusic.innerText = "Música 🎶​: OFF";
     }
 }
 
