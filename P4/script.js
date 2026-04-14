@@ -98,6 +98,14 @@ function startGame() {
     btnStop.disabled = false;
     selectSequence.disabled = true;
     selectLevel.disabled = true;
+
+    // --- NUEVA LÓGICA DE MÚSICA ---
+    // Si el botón de música indica que está en ON (o si quieres que suene siempre al empezar)
+    bgMusic.play().then(() => {
+        btnMusic.innerText = "<µ Música: ON";
+    }).catch(error => {
+        console.log("El audio necesita una interacción previa o el archivo no existe:", error);
+    });
     
     startTimer();
     prepareRound();
