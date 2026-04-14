@@ -99,9 +99,8 @@ function startGame() {
     selectSequence.disabled = true;
     selectLevel.disabled = true;
 
-    // --- LÓGICA DE MÚSICA INTELIGENTE ---
-    // Solo suena si el texto del botón dice ON
-    if (btnMusic.innerText === "Música 🎶​: ON") {
+    // Solo suena si el botón dice exactamente "Música: ON"
+    if (btnMusic.innerText === "Música: ON") {
         bgMusic.play().catch(e => console.log("Error al reproducir:", e));
     }
     
@@ -123,8 +122,9 @@ function stopGame() {
     mainMessage.innerText = "Partida detenida";
     
     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    
+    // Solo pausamos el audio, NO tocamos el texto del btnMusic
     bgMusic.pause();
-    btnMusic.innerText = "Música 🎶​: OFF";
 }
 
 function startTimer() {
@@ -192,17 +192,13 @@ function finishRound() {
 }
 
 function toggleMusic() {
-    // Miramos qué pone el botón actualmente
-    if (btnMusic.innerText === "Música: OFF") {
-        // Si estaba en OFF, lo pasamos a ON
-        btnMusic.innerText = "Música: ON";
-        // Si el juego ya está en marcha, le damos al play
+    if (btnMusic.innerText === "Música 🎶​: OFF") {
+        btnMusic.innerText = "Música 🎶​: ON";
         if (isPlaying) {
             bgMusic.play().catch(e => console.log("Esperando interacción..."));
         }
     } else {
-        // Si estaba en ON, lo pasamos a OFF y pausamos el audio siempre
-        btnMusic.innerText = "Música: OFF";
+        btnMusic.innerText = "Música 🎶​: OFF";
         bgMusic.pause();
     }
 }
