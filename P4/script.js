@@ -99,13 +99,11 @@ function startGame() {
     selectSequence.disabled = true;
     selectLevel.disabled = true;
 
-    // --- NUEVA LÓGICA DE MÚSICA ---
-    // Si el botón de música indica que está en ON (o si quieres que suene siempre al empezar)
-    bgMusic.play().then(() => {
-        btnMusic.innerText = "<µ Música: ON";
-    }).catch(error => {
-        console.log("El audio necesita una interacción previa o el archivo no existe:", error);
-    });
+    // --- LÓGICA DE MÚSICA INTELIGENTE ---
+    // Solo suena si el texto del botón dice ON
+    if (btnMusic.innerText === "<µ Música: ON") {
+        bgMusic.play().catch(e => console.log("Error al reproducir:", e));
+    }
     
     startTimer();
     prepareRound();
@@ -195,11 +193,15 @@ function finishRound() {
 
 function toggleMusic() {
     if (bgMusic.paused) {
-        bgMusic.play();
-        btnMusic.innerText = "🎵 Música: ON";
+        // Solo cambiamos el texto para indicar que "queremos" música
+        btnMusic.innerText = "<µ Música: ON";
+        // Si el juego YA está en marcha, entonces sí la activamos ya
+        if (isPlaying) {
+            bgMusic.play();
+        }
     } else {
         bgMusic.pause();
-        btnMusic.innerText = "🎵 Música: OFF";
+        btnMusic.innerText = "<µ Música: OFF";
     }
 }
 
