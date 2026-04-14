@@ -192,16 +192,18 @@ function finishRound() {
 }
 
 function toggleMusic() {
-    if (bgMusic.paused) {
-        // Solo cambiamos el texto para indicar que "queremos" música
-        btnMusic.innerText = "Música 🎶​: ON";
-        // Si el juego YA está en marcha, entonces sí la activamos ya
+    // Miramos qué pone el botón actualmente
+    if (btnMusic.innerText === "Música: OFF") {
+        // Si estaba en OFF, lo pasamos a ON
+        btnMusic.innerText = "Música: ON";
+        // Si el juego ya está en marcha, le damos al play
         if (isPlaying) {
-            bgMusic.play();
+            bgMusic.play().catch(e => console.log("Esperando interacción..."));
         }
     } else {
+        // Si estaba en ON, lo pasamos a OFF y pausamos el audio siempre
+        btnMusic.innerText = "Música: OFF";
         bgMusic.pause();
-        btnMusic.innerText = "Música 🎶​: OFF";
     }
 }
 
