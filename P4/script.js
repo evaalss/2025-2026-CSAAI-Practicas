@@ -99,12 +99,11 @@ function startGame() {
     selectSequence.disabled = true;
     selectLevel.disabled = true;
 
-    // --- SOLUCIÓN AQUÍ ---
-    // Comprobamos si el usuario dejó el interruptor en ON antes de empezar
-    if (btnMusic.innerText === "Música: ON") {
-        bgMusic.play().catch(e => {
-            console.log("El navegador requiere que interactúes con la página primero.");
-        });
+    // Forzamos el play si el botón está en ON. 
+    // Usamos .includes para evitar errores con espacios o símbolos
+    if (btnMusic.innerText.includes("ON")) {
+        bgMusic.currentTime = 0; // Reinicia la canción para que empiece desde el principio
+        bgMusic.play().catch(e => console.log("Error al iniciar audio:", e));
     }
     
     startTimer();
@@ -195,13 +194,14 @@ function finishRound() {
 }
 
 function toggleMusic() {
-    if (btnMusic.innerText === "Música 🎶​: OFF") {
-        btnMusic.innerText = "Música 🎶​: ON";
+    if (btnMusic.innerText.includes("OFF")) {
+        btnMusic.innerText = "Música: ON";
+        // Si ya estamos jugando, que suene ya
         if (isPlaying) {
-            bgMusic.play().catch(e => console.log("Esperando interacción..."));
+            bgMusic.play().catch(e => {});
         }
     } else {
-        btnMusic.innerText = "Música 🎶​: OFF";
+        btnMusic.innerText = "Música: OFF";
         bgMusic.pause();
     }
 }
