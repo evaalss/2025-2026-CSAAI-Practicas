@@ -128,11 +128,22 @@ select {
 
 .stat-box {
     background: white;
-    padding: 12px 20px;
+    padding: 10px 15px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(176, 92, 123, 0.08);
-    min-width: 100px;
+    /* Cambiamos min-width por un ancho mínimo más pequeño y dejamos que crezca */
+    min-width: 80px; 
+    width: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(176, 92, 123, 0.05);
+}
+
+.stat-box strong {
+    display: block;
+    font-size: 1.1em;
+    white-space: nowrap; /* Evita que el texto salte de línea si no quieres que lo haga */
 }
 
 .stat-box span { font-size: 0.75em; color: var(--text-dark); opacity: 0.7; font-weight: bold; text-transform: uppercase; }
@@ -287,5 +298,21 @@ select {
         font-size: 1.4em; /* Un poco más pequeño para que quepa en una línea */
         width: auto;      /* Que el cuadro blanco se adapte al texto */
         max-width: 100%;  /* Pero que no se salga de la pantalla */
+    }
+
+    .top-bar {
+        flex-wrap: wrap; /* Si no caben los 3 cuadros, el de Estado bajará solo */
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .stat-box {
+        flex: 1 1 auto; /* Permite que el cuadro se estire para que quepa el texto */
+        min-width: 100px;
+        padding: 8px 10px;
+    }
+
+    .stat-box strong {
+        font-size: 1em; /* Un pelín más pequeño en móvil para asegurar el ajuste */
     }
 }
