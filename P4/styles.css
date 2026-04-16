@@ -158,6 +158,7 @@ select {
     gap: 20px;
     align-items: center;
     border: 2px solid white;
+    flex-wrap: wrap; /* Permite que los elementos bajen en pantallas pequeñas */
 }
 
 .avatar-box {
@@ -246,8 +247,36 @@ select {
 
 .hide-labels .card-label { visibility: hidden; }
 
-@media (max-width: 900px) {
-    .game-container { flex-direction: column; }
-    .sidebar { width: 100%; }
-    .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
+/* --- AJUSTES PARA MÓVIL --- */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column; /* La sidebar pasa arriba y el juego abajo */
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 100%; /* La sidebar ocupa todo el ancho */
+    }
+
+    .main-display {
+        flex-direction: column; /* El avatar arriba y el mensaje abajo */
+        text-align: center;
+        justify-content: center;
+    }
+
+    .message-box h2 {
+        font-size: 1.5em; /* Reducimos el texto para que no se salga */
+        padding: 8px 15px;
+        width: 100%; /* Ocupa el ancho disponible */
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en lugar de 4 */
+        gap: 10px;
+    }
+
+    .avatar-box {
+        width: 100px; /* Un pelín más pequeño en móvil */
+        height: 105px;
+    }
 }
