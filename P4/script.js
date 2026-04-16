@@ -1,4 +1,3 @@
-// --- Datos de configuración actualizados para usar imágenes ---
 const pairs = {
     'casa_cama': { 
         w1: { word: 'CASA', img: 'casa.png', type: 'type-b' }, 
@@ -65,11 +64,9 @@ function renderGrid() {
     
     const lvlToPreview = isPlaying ? currentLevel : parseInt(selectLevel.value);
     
-    // Si el nivel es mayor a 1, mezclamos la distribución original
     if (lvlToPreview > 1) {
         currentDistribution = shuffleArray(levelDistributions[lvlToPreview]);
     } else {
-        // El nivel 1 siempre mantiene su orden original [0,0,0,0,1,1,1,1]
         currentDistribution = levelDistributions[lvlToPreview];
     }
 
@@ -103,8 +100,6 @@ function startGame() {
     selectSequence.disabled = true;
     selectLevel.disabled = true;
 
-    // Forzamos el play si el botón está en ON. 
-    // Usamos .includes para evitar errores con espacios o símbolos
     if (btnMusic.innerText.includes("ON")) {
         bgMusic.currentTime = 0; // Reinicia la canción para que empiece desde el principio
         bgMusic.play().catch(e => console.log("Error al iniciar audio:", e));
@@ -129,7 +124,6 @@ function stopGame() {
     
     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
     
-    // Solo pausamos el audio, NO tocamos el texto del btnMusic
     bgMusic.pause();
 }
 
