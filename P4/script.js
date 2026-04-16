@@ -14,7 +14,15 @@ const pairs = {
     'luna_cuna': { 
         w1: { word: 'LUNA', img: 'luna.png', type: 'type-b' }, 
         w2: { word: 'CUNA', img: 'cuna.png', type: 'type-a' } 
-    }
+    },
+    'rata_bata': { 
+    w1: { word: 'RATA', img: 'rata.png', type: 'type-b' }, 
+    w2: { word: 'BATA', img: 'bata.png', type: 'type-a' } 
+    },
+    'foca_boca': { 
+    w1: { word: 'FOCA', img: 'foca.png', type: 'type-b' }, 
+    w2: { word: 'BOCA', img: 'boca.png', type: 'type-a' } 
+    },
 };
 
 const levelDistributions = {
