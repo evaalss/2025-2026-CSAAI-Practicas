@@ -287,4 +287,5 @@ select {
         font-size: 1.4em; /* Un poco más pequeño para que quepa en una línea */
         width: auto;      /* Que el cuadro blanco se adapte al texto */
         max-width: 100%;  /* Pero que no se salga de la pantalla */
+    }
 }
