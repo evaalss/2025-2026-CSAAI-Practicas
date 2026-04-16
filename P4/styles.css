@@ -271,8 +271,9 @@ select {
 
     .avatar-box {
         /* Mantenemos el ancho original para que no se comprima */
-        width: 120px; 
-        height: 125px;
+        /* width: 120px; 
+        height: 125px; */
+        object-fit: cover; 
         flex-shrink: 0; /* Evita que el contenedor se aplaste si hay poco espacio */
     }
 
