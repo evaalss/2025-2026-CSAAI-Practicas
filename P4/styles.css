@@ -258,25 +258,32 @@ select {
         width: 100%; /* La sidebar ocupa todo el ancho */
     }
 
-    .main-display {
-        flex-direction: column; /* El avatar arriba y el mensaje abajo */
-        text-align: center;
-        justify-content: center;
-    }
-
-    .message-box h2 {
-        font-size: 1.5em; /* Reducimos el texto para que no se salga */
-        padding: 8px 15px;
-        width: 100%; /* Ocupa el ancho disponible */
-    }
-
     .grid {
         grid-template-columns: repeat(2, 1fr); /* 2 columnas en lugar de 4 */
         gap: 10px;
     }
 
-    .avatar-box {
-        width: 100px; /* Un pelín más pequeño en móvil */
-        height: 105px;
+    .main-display {
+        flex-direction: column; /* Apila la foto sobre el texto */
+        align-items: center;    /* Centra ambos elementos */
+        gap: 15px;
     }
+
+    .avatar-box {
+        /* Mantenemos el ancho original para que no se comprima */
+        width: 120px; 
+        height: 125px;
+        flex-shrink: 0; /* Evita que el contenedor se aplaste si hay poco espacio */
+    }
+
+    .message-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .message-box h2 {
+        font-size: 1.4em; /* Un poco más pequeño para que quepa en una línea */
+        width: auto;      /* Que el cuadro blanco se adapte al texto */
+        max-width: 100%;  /* Pero que no se salga de la pantalla */
 }
