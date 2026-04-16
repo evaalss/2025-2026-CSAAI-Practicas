@@ -26,7 +26,7 @@ const levelDistributions = {
     5: [0, 1, 1, 0, 1, 0, 0, 1] 
 };
 
-const speeds = { 1: 1000, 2: 800, 3: 600, 4: 450, 5: 325 };
+const speeds = { 1: 800, 2: 700, 3: 600, 4: 450, 5: 325 };
 
 let isPlaying = false;
 let currentLevel = 1;
@@ -61,21 +61,25 @@ function init() {
 
 function renderGrid() {
     grid.innerHTML = '';
-    const pairKey = selectSequence.value;
-    currentPair = pairs[pairKey];
+    currentPair = pairs[selectSequence.value];
     
     const lvlToPreview = isPlaying ? currentLevel : parseInt(selectLevel.value);
-    currentDistribution = levelDistributions[lvlToPreview];
+    
+    // Si el nivel es mayor a 1, mezclamos la distribución original
+    if (lvlToPreview > 1) {
+        currentDistribution = shuffleArray(levelDistributions[lvlToPreview]);
+    } else {
+        // El nivel 1 siempre mantiene su orden original [0,0,0,0,1,1,1,1]
+        currentDistribution = levelDistributions[lvlToPreview];
+    }
 
     currentDistribution.forEach(val => {
         const item = val === 0 ? currentPair.w1 : currentPair.w2;
         const card = document.createElement('div');
-        card.className = `card ${item.type}`;
+        const casaClass = (item.word === 'CASA') ? 'card-casa' : '';
+        card.className = `card ${item.type} ${casaClass}`;
         
-        card.innerHTML = `
-            <img src="${item.img}" alt="${item.word}" class="card-image">
-            <div class="card-label">${item.word}</div>
-        `;
+        card.innerHTML = `<img src="${item.img}" class="card-image"><div class="card-label">${item.word}</div>`;
         grid.appendChild(card);
     });
     toggleLabels();
@@ -204,6 +208,11 @@ function toggleMusic() {
         btnMusic.innerText = "Música 🎶​: OFF";
         bgMusic.pause();
     }
+}
+
+function shuffleArray(array) {
+    // Crea una copia y la desordena aleatoriamente
+    return [...array].sort(() => Math.random() - 0.5);
 }
 
 init();
