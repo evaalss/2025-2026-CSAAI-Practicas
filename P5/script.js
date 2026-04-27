@@ -11,13 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreBotEl = document.getElementById('score-bot');
     const modeDisplay = document.getElementById('mode-display');
 
+    // --- Sistema de Audio ---
     const bgMusic = new Audio('principio.mp3');
     bgMusic.loop = true;
     const winSound = new Audio('victoria.mp3');
     const loseSound = new Audio('derrota.mp3');
     const tieSound = new Audio('empate.mp3');
     const countdownSound = new Audio('cuenta_atras.mp3');
+    const goalSound = new Audio('gol.mp3'); // Nuevo sonido de gol
 
+    // Desbloquear audio del menú con la primera interacción
     const startMenuMusic = () => {
         if (currentState === STATES.MENU && bgMusic.paused) {
             bgMusic.play().catch(() => {});
@@ -128,10 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
         matchTimeCounter = 0; 
         confetti = []; 
         
+        // Detener sonidos previos
         bgMusic.pause(); bgMusic.currentTime = 0;
         winSound.pause(); winSound.currentTime = 0;
         loseSound.pause(); loseSound.currentTime = 0;
         tieSound.pause(); tieSound.currentTime = 0;
+        goalSound.pause(); goalSound.currentTime = 0;
 
         if (gameMode === 3) {
             matchSeconds = 30;
@@ -165,7 +170,13 @@ document.addEventListener('DOMContentLoaded', () => {
         currentState = STATES.GOAL;
         scorer === 'player' ? scores.player++ : scores.bot++;
         updateScoreUI();
-        uiLayer.classList.remove('hidden'); overlayText.textContent = scorer === 'player' ? "¡GOOOL!" : "¡Gol rival!";
+        uiLayer.classList.remove('hidden'); 
+        overlayText.textContent = scorer === 'player' ? "¡GOOOL!" : "¡Gol rival!";
+        
+        // Reproducir el sonido de gol
+        goalSound.currentTime = 0;
+        goalSound.play().catch(() => {});
+
         setTimeout(() => {
             if (checkWinCondition()) { endGame(scores.player > scores.bot, scores.player === scores.bot); }
             else { resetPositions(); startCountdown(); }
@@ -182,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentState = STATES.GAMEOVER; uiLayer.style.background = "rgba(0,0,0,0.8)";
         countdownSound.pause();
         bgMusic.pause();
+        goalSound.pause(); // Lo pausamos por si se superpone con los sonidos de victoria/derrota
         
         if (isTie) {
             overlayText.textContent = "¡Empate!";
@@ -259,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messageScreen.classList.add('hidden');
                 scoreDisplay.classList.add('hidden');
                 
-                winSound.pause(); loseSound.pause(); tieSound.pause();
+                winSound.pause(); loseSound.pause(); tieSound.pause(); goalSound.pause();
                 bgMusic.currentTime = 0;
                 bgMusic.play().catch(() => {});
             }
