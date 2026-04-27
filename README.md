@@ -6,4 +6,4 @@ Mis prácticas de la asignatura Construcción de Servicios y Aplicaciones Audiov
 - [Práctica 2 - BOOM](https://evaalss.github.io/2025-2026-CSAAI-Practicas/P2/)
 - [Práctica 3 - INVASIÓN ALIENÍGENA](https://evaalss.github.io/2025-2026-CSAAI-Practicas/P3/)
 - [Práctica 4 - Beat The Word](https://evaalss.github.io/2025-2026-CSAAI-Practicas/P4/)
-- [Práctica 5](https://evaalss.github.io/2025-2026-CSAAI-Practicas/P5/)
+- [Práctica 5 - Bot League](https://evaalss.github.io/2025-2026-CSAAI-Practicas/P5/)
