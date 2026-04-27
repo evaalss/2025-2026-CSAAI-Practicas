@@ -2,32 +2,53 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bot League</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="balon.jpg">
 </head>
 <body>
-    <div id="game-container">
-        <div id="score-display" class="hidden">
-            <span id="score-player">0</span> - <span id="score-bot">0</span>
-            <div id="mode-display" class="mode-text">Modo de juego</div>
-        </div>
-        
-        <canvas id="gameCanvas" width="800" height="500"></canvas>
-        
-        <div id="ui-layer">
-            <div id="menu-screen">
-                <h1>Bot League</h1>
-                <p>Elige modo de juego</p>
-                <p><strong>1:</strong> A 3 goles </p> 
-                <p><strong>2:</strong> Gol de oro</p>
-                <p><strong>3:</strong> Tiempo (30 segundos)</p> 
-                <p class="controls">Flechas para mover · A/D para girar · Espacio para chutar</p>
+    <div id="game-wrapper">
+        <div id="game-container">
+            <div id="score-display" class="hidden">
+                <span id="score-player">0</span> - <span id="score-bot">0</span>
+                <div id="mode-display" class="mode-text">Modo de juego</div>
             </div>
-            <div id="message-screen" class="hidden">
-                <h1 id="overlay-text">3</h1>
-                <p id="game-over-controls" class="hidden controls">Pulsa R para reiniciar<br>Pulsa M para volver al menú</p>
+            
+            <canvas id="gameCanvas" width="800" height="500"></canvas>
+            
+            <div id="ui-layer">
+                <div id="menu-screen">
+                    <h1>Bot League</h1>
+                    <p>Elige modo de juego</p>
+                    <button class="menu-btn btn-modo" data-mode="1">1: A 3 goles</button>
+                    <button class="menu-btn btn-modo" data-mode="2">2: Gol de oro</button>
+                    <button class="menu-btn btn-modo" data-mode="3">3: Tiempo (30s)</button>
+                </div>
+                <div id="message-screen" class="hidden">
+                    <h1 id="overlay-text">3</h1>
+                    <div id="game-over-controls" class="hidden">
+                        <button class="menu-btn" id="btn-restart">Reiniciar partida</button>
+                        <button class="menu-btn" id="btn-menu">Volver al menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-controls">
+            <div class="dpad">
+                <button class="ctrl-btn" id="btn-up">⬆️</button>
+                <div class="dpad-middle">
+                    <button class="ctrl-btn" id="btn-left">⬅️</button>
+                    <button class="ctrl-btn" id="btn-right">➡️</button>
+                </div>
+                <button class="ctrl-btn" id="btn-down">⬇️</button>
+            </div>
+            <div class="action-pad">
+                <div class="action-rot">
+                    <button class="ctrl-btn small-btn" id="btn-rot-left">↺</button>
+                    <button class="ctrl-btn small-btn" id="btn-rot-right">↻</button>
+                </div>
+                <button class="ctrl-btn" id="btn-shoot">⚽</button>
             </div>
         </div>
     </div>

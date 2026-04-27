@@ -18,18 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const loseSound = new Audio('derrota.mp3');
     const tieSound = new Audio('empate.mp3');
     const countdownSound = new Audio('cuenta_atras.mp3');
-    const goalSound = new Audio('gol.mp3'); // Nuevo sonido de gol
+    const goalSound = new Audio('gol.mp3');
 
-    // Desbloquear audio del menú con la primera interacción
     const startMenuMusic = () => {
         if (currentState === STATES.MENU && bgMusic.paused) {
             bgMusic.play().catch(() => {});
         }
-        document.removeEventListener('keydown', startMenuMusic);
-        document.removeEventListener('click', startMenuMusic);
     };
-    document.addEventListener('keydown', startMenuMusic);
-    document.addEventListener('click', startMenuMusic);
+    document.addEventListener('keydown', startMenuMusic, {once: true});
+    document.addEventListener('touchstart', startMenuMusic, {once: true});
+    document.addEventListener('click', startMenuMusic, {once: true});
 
     const timerDisplay = document.createElement('div');
     timerDisplay.style.fontSize = '1.5rem';
@@ -65,35 +63,77 @@ document.addEventListener('DOMContentLoaded', () => {
         { x: 600, y: 350, r: 18, color: '#cc3333', speed: 2.2 }
     ];
 
+    // --- Controladores (Teclado y Táctil) ---
     const keys = {};
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
 
+    // Mapear los botones del móvil para que actúen como el teclado
+    const bindTouch = (id, keyName) => {
+        const btn = document.getElementById(id);
+        if(!btn) return;
+        const press = (e) => { e.preventDefault(); keys[keyName] = true; };
+        const release = (e) => { e.preventDefault(); keys[keyName] = false; };
+        btn.addEventListener('touchstart', press, {passive: false});
+        btn.addEventListener('touchend', release, {passive: false});
+        btn.addEventListener('mousedown', press);
+        btn.addEventListener('mouseup', release);
+        btn.addEventListener('mouseleave', release);
+    };
+
+    bindTouch('btn-up', 'ArrowUp');
+    bindTouch('btn-down', 'ArrowDown');
+    bindTouch('btn-left', 'ArrowLeft');
+    bindTouch('btn-right', 'ArrowRight');
+    bindTouch('btn-rot-left', 'a');
+    bindTouch('btn-rot-right', 'd');
+    bindTouch('btn-shoot', ' ');
+
+    // --- Lógica del Menú Táctil ---
+    document.querySelectorAll('.btn-modo').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let mode = parseInt(e.target.dataset.mode);
+            startGame(mode);
+        });
+    });
+
+    document.getElementById('btn-restart').addEventListener('click', () => {
+        if(currentState === STATES.GAMEOVER) startGame(gameMode);
+    });
+
+    document.getElementById('btn-menu').addEventListener('click', () => {
+        if(currentState === STATES.GAMEOVER) {
+            currentState = STATES.MENU;
+            confetti = [];
+            uiLayer.classList.remove('hidden');
+            menuScreen.classList.remove('hidden');
+            messageScreen.classList.add('hidden');
+            scoreDisplay.classList.add('hidden');
+            
+            winSound.pause(); loseSound.pause(); tieSound.pause(); goalSound.pause();
+            bgMusic.currentTime = 0;
+            bgMusic.play().catch(() => {});
+        }
+    });
+
+    // --- Sistema de Partículas ---
     let confetti = [];
     const confettiColors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
 
     class ConfettiParticle {
         constructor() {
-            this.x = canvas.width / 2;
-            this.y = canvas.height / 2;
+            this.x = canvas.width / 2; this.y = canvas.height / 2;
             this.size = Math.random() * 8 + 4;
             this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-            this.speedX = (Math.random() - 0.5) * 15;
-            this.speedY = (Math.random() - 0.5) * 15 - 5;
-            this.gravity = 0.2;
-            this.opacity = 1;
+            this.speedX = (Math.random() - 0.5) * 15; this.speedY = (Math.random() - 0.5) * 15 - 5;
+            this.gravity = 0.2; this.opacity = 1;
         }
         update() {
-            this.speedY += this.gravity;
-            this.x += this.speedX;
-            this.y += this.speedY;
-            this.opacity -= 0.01;
+            this.speedY += this.gravity; this.x += this.speedX; this.y += this.speedY; this.opacity -= 0.01;
         }
         draw() {
-            ctx.fillStyle = this.color;
-            ctx.globalAlpha = this.opacity;
-            ctx.fillRect(this.x, this.y, this.size, this.size);
-            ctx.globalAlpha = 1;
+            ctx.fillStyle = this.color; ctx.globalAlpha = this.opacity;
+            ctx.fillRect(this.x, this.y, this.size, this.size); ctx.globalAlpha = 1;
         }
     }
 
@@ -131,29 +171,19 @@ document.addEventListener('DOMContentLoaded', () => {
         matchTimeCounter = 0; 
         confetti = []; 
         
-        // Detener sonidos previos
         bgMusic.pause(); bgMusic.currentTime = 0;
         winSound.pause(); winSound.currentTime = 0;
         loseSound.pause(); loseSound.currentTime = 0;
         tieSound.pause(); tieSound.currentTime = 0;
         goalSound.pause(); goalSound.currentTime = 0;
 
-        if (gameMode === 3) {
-            matchSeconds = 30;
-        } else {
-            matchSeconds = 0;
-        }
-
+        matchSeconds = (gameMode === 3) ? 30 : 0;
         const modeNames = { 1: "A 3 goles", 2: "Gol de oro", 3: "Tiempo (30s)" };
         modeDisplay.textContent = modeNames[mode];
         
-        updateScoreUI(); 
-        updateTimerUI();
-        
-        scoreDisplay.classList.remove('hidden'); 
-        menuScreen.classList.add('hidden');
-        resetPositions(); 
-        startCountdown();
+        updateScoreUI(); updateTimerUI();
+        scoreDisplay.classList.remove('hidden'); menuScreen.classList.add('hidden');
+        resetPositions(); startCountdown();
     }
 
     function startCountdown() {
@@ -161,21 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
         uiLayer.classList.remove('hidden'); messageScreen.classList.remove('hidden');
         gameOverControls.classList.add('hidden'); countdownValue = 3;
         overlayText.textContent = countdownValue; countdownTimer = Date.now(); lastFrameTime = Date.now();
-        
-        countdownSound.currentTime = 0;
-        countdownSound.play().catch(() => {});
+        countdownSound.currentTime = 0; countdownSound.play().catch(() => {});
     }
 
     function handleGoal(scorer) {
         currentState = STATES.GOAL;
         scorer === 'player' ? scores.player++ : scores.bot++;
         updateScoreUI();
-        uiLayer.classList.remove('hidden'); 
-        overlayText.textContent = scorer === 'player' ? "¡GOOOL!" : "¡Gol rival!";
+        uiLayer.classList.remove('hidden'); overlayText.textContent = scorer === 'player' ? "¡GOOOL!" : "¡Gol rival!";
         
-        // Reproducir el sonido de gol
-        goalSound.currentTime = 0;
-        goalSound.play().catch(() => {});
+        goalSound.currentTime = 0; goalSound.play().catch(() => {});
 
         setTimeout(() => {
             if (checkWinCondition()) { endGame(scores.player > scores.bot, scores.player === scores.bot); }
@@ -191,28 +216,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function endGame(playerWon, isTie = false) {
         currentState = STATES.GAMEOVER; uiLayer.style.background = "rgba(0,0,0,0.8)";
-        countdownSound.pause();
-        bgMusic.pause();
-        goalSound.pause(); // Lo pausamos por si se superpone con los sonidos de victoria/derrota
+        countdownSound.pause(); bgMusic.pause(); goalSound.pause();
         
         if (isTie) {
             overlayText.textContent = "¡Empate!";
-            tieSound.currentTime = 0;
-            tieSound.play().catch(() => {});
+            tieSound.currentTime = 0; tieSound.play().catch(() => {});
         } else {
             overlayText.textContent = playerWon ? "¡Has ganado!" : "¡Has perdido!";
             if (playerWon) {
                 triggerConfetti();
-                winSound.currentTime = 0;
-                winSound.play().catch(() => {});
+                winSound.currentTime = 0; winSound.play().catch(() => {});
             } else {
-                loseSound.currentTime = 0;
-                loseSound.play().catch(() => {});
+                loseSound.currentTime = 0; loseSound.play().catch(() => {});
             }
         }
         
-        uiLayer.classList.remove('hidden');
-        messageScreen.classList.remove('hidden');
+        uiLayer.classList.remove('hidden'); messageScreen.classList.remove('hidden');
         gameOverControls.classList.remove('hidden');
     }
 
@@ -253,28 +272,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let now = Date.now(); let dt = now - lastFrameTime; lastFrameTime = now;
         if (dt > 100) dt = 16; 
         
+        // El control por teclado del menú sigue activo para quien juegue en PC
         if (currentState === STATES.MENU) { 
-            if (keys['1']) startGame(1);
-            if (keys['2']) startGame(2);
-            if (keys['3']) startGame(3);
-            return; 
+            if (keys['1']) startGame(1); if (keys['2']) startGame(2); if (keys['3']) startGame(3); return; 
         }
         
         if (currentState === STATES.GAMEOVER) { 
             if (scores.player > scores.bot) updateConfetti(); 
             if (keys['r'] || keys['R']) startGame(gameMode); 
-            if (keys['m'] || keys['M']) {
-                currentState = STATES.MENU;
-                confetti = [];
-                uiLayer.classList.remove('hidden');
-                menuScreen.classList.remove('hidden');
-                messageScreen.classList.add('hidden');
-                scoreDisplay.classList.add('hidden');
-                
-                winSound.pause(); loseSound.pause(); tieSound.pause(); goalSound.pause();
-                bgMusic.currentTime = 0;
-                bgMusic.play().catch(() => {});
-            }
+            if (keys['m'] || keys['M']) document.getElementById('btn-menu').click(); 
             return; 
         }
         
@@ -290,18 +296,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (matchTimeCounter >= 1000) {
             let passedSeconds = Math.floor(matchTimeCounter / 1000);
             matchTimeCounter %= 1000; 
-            
             if (gameMode === 3) {
                 matchSeconds -= passedSeconds;
                 if (matchSeconds <= 0) {
-                    matchSeconds = 0;
-                    updateTimerUI();
-                    endGame(scores.player > scores.bot, scores.player === scores.bot);
-                    return;
+                    matchSeconds = 0; updateTimerUI();
+                    endGame(scores.player > scores.bot, scores.player === scores.bot); return;
                 }
-            } else {
-                matchSeconds += passedSeconds;
-            }
+            } else { matchSeconds += passedSeconds; }
             updateTimerUI();
         }
         
@@ -327,23 +328,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (ball.x - ball.r < FIELD.margin) {
             if (ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
-                if (ball.x - ball.r < FIELD.margin - GOAL_WIDTH) {
-                    ball.x = FIELD.margin - GOAL_WIDTH + ball.r; ball.vx *= -1;
-                }
+                if (ball.x - ball.r < FIELD.margin - GOAL_WIDTH) { ball.x = FIELD.margin - GOAL_WIDTH + ball.r; ball.vx *= -1; }
                 if (currentState === STATES.PLAYING && ball.x < FIELD.margin) { handleGoal('bot'); }
             } else { ball.x = FIELD.margin + ball.r; ball.vx *= -1; }
         } else if (ball.x + ball.r > FIELD.width - FIELD.margin) {
             if (ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
-                if (ball.x + ball.r > FIELD.width - FIELD.margin + GOAL_WIDTH) {
-                    ball.x = FIELD.width - FIELD.margin + GOAL_WIDTH - ball.r; ball.vx *= -1;
-                }
+                if (ball.x + ball.r > FIELD.width - FIELD.margin + GOAL_WIDTH) { ball.x = FIELD.width - FIELD.margin + GOAL_WIDTH - ball.r; ball.vx *= -1; }
                 if (currentState === STATES.PLAYING && ball.x > FIELD.width - FIELD.margin) { handleGoal('player'); }
             } else { ball.x = FIELD.width - FIELD.margin - ball.r; ball.vx *= -1; }
         }
         
         let allChars = [player, teammate, ...bots]; 
-        applyBotLogic(teammate, allChars); 
-        bots.forEach(bot => applyBotLogic(bot, allChars));
+        applyBotLogic(teammate, allChars); bots.forEach(bot => applyBotLogic(bot, allChars));
     }
 
     function draw() {

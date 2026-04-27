@@ -1,80 +1,52 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #1a1a1a;
-    color: #ffffff;
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    margin: 0; padding: 0; background-color: #1a1a1a; color: #ffffff;
+    font-family: sans-serif; display: flex; justify-content: center;
+    align-items: center; height: 100vh; overflow: hidden; touch-action: none;
 }
-
+#game-wrapper {
+    width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center;
+}
 #game-container {
-    position: relative;
-    width: 800px;
-    height: 500px;
-    background-color: #276b38;
+    position: relative; width: 100%; aspect-ratio: 8/5; background-color: #276b38;
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
-
-canvas {
-    display: block;
-}
-
+canvas { width: 100%; height: 100%; display: block; }
 #ui-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    z-index: 10;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;
+    flex-direction: column; justify-content: center; align-items: center;
+    background: rgba(0, 0, 0, 0.7); text-align: center; z-index: 10;
 }
+#score-display { position: absolute; top: 10px; left: 0; width: 100%; text-align: center; font-size: 2rem; font-weight: bold; pointer-events: none; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); z-index: 5; }
+.mode-text { font-size: 1rem; color: #cccccc; margin-top: 5px; }
+.hidden { display: none !important; }
+#ui-layer h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+#ui-layer p { font-size: 1.2rem; margin: 10px 0; }
 
-#score-display {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    pointer-events: none;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    z-index: 5;
+/* Botones de Menú clickeables y táctiles */
+.menu-btn {
+    display: block; width: 80%; max-width: 250px; margin: 8px auto; padding: 12px;
+    font-size: 1.1rem; font-weight: bold; background: #2b78e4; color: white;
+    border: 2px solid #ffffff; border-radius: 8px; cursor: pointer; text-transform: uppercase;
 }
+.menu-btn:active { background: #1a5bb0; }
 
-.mode-text {
-    font-size: 1rem;
-    font-weight: normal;
-    color: #cccccc;
-    margin-top: 5px;
+/* Controles Táctiles (solo se ven en pantallas pequeñas) */
+#mobile-controls {
+    display: flex; width: 100%; justify-content: space-between; padding: 15px; box-sizing: border-box;
 }
-
-.hidden {
-    display: none !important;
+@media (min-width: 850px) {
+    #mobile-controls { display: none; } /* En PC se ocultan automáticamente */
 }
-
-#ui-layer h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+.dpad { display: flex; flex-direction: column; align-items: center; }
+.dpad-middle { display: flex; gap: 40px; margin: 5px 0; }
+.action-pad { display: flex; align-items: flex-end; gap: 15px; }
+.action-rot { display: flex; flex-direction: column; gap: 10px; }
+.ctrl-btn {
+    background: rgba(255,255,255,0.15); border: 2px solid #ffffff; color: #ffffff;
+    border-radius: 50%; width: 50px; height: 50px; font-size: 1.2rem; display: flex;
+    justify-content: center; align-items: center; user-select: none; touch-action: manipulation;
 }
-
-#ui-layer p {
-    font-size: 1.5rem;
-    margin: 10px 0;
-}
-
-.controls {
-    margin-top: 40px !important;
-    font-size: 1rem !important;
-    color: #aaaaaa;
-}
+.ctrl-btn:active { background: rgba(255,255,255,0.5); }
+.small-btn { width: 40px; height: 40px; font-size: 1rem; }
+#btn-shoot { width: 65px; height: 65px; font-size: 1.5rem; background: rgba(255,0,0,0.4); border-color: #ffaaaa; }
+#btn-shoot:active { background: rgba(255,0,0,0.8); }
