@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreBotEl = document.getElementById('score-bot');
     const modeDisplay = document.getElementById('mode-display');
 
-    // --- Sistema de Audio ---
     const bgMusic = new Audio('principio.mp3');
     bgMusic.loop = true;
     const winSound = new Audio('victoria.mp3');
@@ -20,21 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownSound = new Audio('cuenta_atras.mp3');
     const goalSound = new Audio('gol.mp3');
 
-    // Intentar reproducir inmediatamente al cargar
-    bgMusic.play().catch(() => {
-        // Si el navegador bloquea el autoplay, usamos el fallback con la primera interacción
-        const playOnInteraction = () => {
-            if (currentState === STATES.MENU && bgMusic.paused) {
-                bgMusic.play().catch(() => {});
-            }
-            document.removeEventListener('click', playOnInteraction);
-            document.removeEventListener('keydown', playOnInteraction);
-            document.removeEventListener('touchstart', playOnInteraction);
-        };
-        document.addEventListener('click', playOnInteraction);
-        document.addEventListener('keydown', playOnInteraction);
-        document.addEventListener('touchstart', playOnInteraction);
-    });
+    const startMenuMusic = () => {
+        if (currentState === STATES.MENU && bgMusic.paused) {
+            bgMusic.play().catch(() => {});
+        }
+    };
+    document.addEventListener('keydown', startMenuMusic, {once: true});
+    document.addEventListener('touchstart', startMenuMusic, {once: true});
+    document.addEventListener('click', startMenuMusic, {once: true});
 
     const timerDisplay = document.createElement('div');
     timerDisplay.style.fontSize = '1.5rem';
@@ -62,15 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const GOAL_TOP = (FIELD.height - GOAL_HEIGHT) / 2;
     const GOAL_BOTTOM = GOAL_TOP + GOAL_HEIGHT;
 
-    let player = { x: 200, y: 150, r: 18, color: '#2b78e4', angle: 0, speed: 4 };
-    let teammate = { x: 200, y: 350, r: 18, color: '#4fc3f7', speed: 2 };
+    let player = { x: 200, y: 150, r: 18, color: '#ff69b4', angle: 0, speed: 4 }; // Rosa vibrante
+    let teammate = { x: 200, y: 350, r: 18, color: '#ffb6c1', speed: 2 }; // Rosa claro
     let ball = { x: 400, y: 250, r: 10, color: '#ffffff', vx: 0, vy: 0, friction: 0.97 };
     let bots = [
-        { x: 600, y: 150, r: 18, color: '#cc3333', speed: 2 },
-        { x: 600, y: 350, r: 18, color: '#cc3333', speed: 2.2 }
+        { x: 600, y: 150, r: 18, color: '#2b78e4', speed: 2 }, // Azul
+        { x: 600, y: 350, r: 18, color: '#2b78e4', speed: 2.2 } // Azul
     ];
 
-    // --- Controladores (Teclado y Táctil) ---
     const keys = {};
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
@@ -95,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     bindTouch('btn-rot-right', 'd');
     bindTouch('btn-shoot', ' ');
 
-    // --- Lógica del Menú Táctil ---
     document.querySelectorAll('.btn-modo').forEach(btn => {
         btn.addEventListener('click', (e) => {
             let mode = parseInt(e.target.dataset.mode);
@@ -122,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Sistema de Partículas ---
     let confetti = [];
     const confettiColors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
 
