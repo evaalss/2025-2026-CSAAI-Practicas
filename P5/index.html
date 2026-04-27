@@ -20,15 +20,32 @@
                 <div id="menu-screen">
                     <h1>Bot League</h1>
                     <p>Elige modo de juego</p>
-                    <button class="menu-btn btn-modo" data-mode="1">1: A 3 goles</button>
-                    <button class="menu-btn btn-modo" data-mode="2">2: Gol de oro</button>
-                    <button class="menu-btn btn-modo" data-mode="3">3: Tiempo (30s)</button>
+                    
+                    <div id="desktop-menu">
+                        <p><strong>Pulsa 1:</strong> Partido a 3 goles</p>
+                        <p><strong>Pulsa 2:</strong> Gol de oro</p>
+                        <p><strong>Pulsa 3:</strong> Tiempo (30s)</p>
+                        <p class="controls">Flechas para mover · A/D para girar · Espacio para chutar</p>
+                    </div>
+                    
+                    <div id="mobile-menu">
+                        <button class="menu-btn btn-modo" data-mode="1">1: A 3 goles</button>
+                        <button class="menu-btn btn-modo" data-mode="2">2: Gol de oro</button>
+                        <button class="menu-btn btn-modo" data-mode="3">3: Tiempo (30s)</button>
+                    </div>
                 </div>
+                
                 <div id="message-screen" class="hidden">
                     <h1 id="overlay-text">3</h1>
+                    
                     <div id="game-over-controls" class="hidden">
-                        <button class="menu-btn" id="btn-restart">Reiniciar partida</button>
-                        <button class="menu-btn" id="btn-menu">Volver al menú</button>
+                        <div id="desktop-gameover">
+                            <p class="controls">Pulsa R para reiniciar<br>Pulsa M para volver al menú</p>
+                        </div>
+                        <div id="mobile-gameover">
+                            <button class="menu-btn" id="btn-restart">Reiniciar partida</button>
+                            <button class="menu-btn" id="btn-menu">Volver al menú</button>
+                        </div>
                     </div>
                 </div>
             </div>

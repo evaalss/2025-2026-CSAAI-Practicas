@@ -21,8 +21,8 @@ canvas { width: 100%; height: 100%; display: block; }
 .hidden { display: none !important; }
 #ui-layer h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 #ui-layer p { font-size: 1.2rem; margin: 10px 0; }
+.controls { margin-top: 20px !important; font-size: 1rem !important; color: #aaaaaa; }
 
-/* Botones de Menú clickeables y táctiles */
 .menu-btn {
     display: block; width: 80%; max-width: 250px; margin: 8px auto; padding: 12px;
     font-size: 1.1rem; font-weight: bold; background: #2b78e4; color: white;
@@ -30,12 +30,11 @@ canvas { width: 100%; height: 100%; display: block; }
 }
 .menu-btn:active { background: #1a5bb0; }
 
-/* Controles Táctiles (solo se ven en pantallas pequeñas) */
+#desktop-menu, #desktop-gameover { display: none; }
+#mobile-menu, #mobile-gameover { display: block; width: 100%; }
+
 #mobile-controls {
     display: flex; width: 100%; justify-content: space-between; padding: 15px; box-sizing: border-box;
-}
-@media (min-width: 850px) {
-    #mobile-controls { display: none; } /* En PC se ocultan automáticamente */
 }
 .dpad { display: flex; flex-direction: column; align-items: center; }
 .dpad-middle { display: flex; gap: 40px; margin: 5px 0; }
@@ -50,3 +49,8 @@ canvas { width: 100%; height: 100%; display: block; }
 .small-btn { width: 40px; height: 40px; font-size: 1rem; }
 #btn-shoot { width: 65px; height: 65px; font-size: 1.5rem; background: rgba(255,0,0,0.4); border-color: #ffaaaa; }
 #btn-shoot:active { background: rgba(255,0,0,0.8); }
+
+@media (min-width: 850px) {
+    #mobile-controls, #mobile-menu, #mobile-gameover { display: none; }
+    #desktop-menu, #desktop-gameover { display: block; }
+}
