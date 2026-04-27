@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const pairs = {
     'casa_cama': { 
         w1: { word: 'CASA', img: 'casa.png', type: 'type-b' }, 
