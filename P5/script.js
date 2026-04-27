@@ -11,6 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreBotEl = document.getElementById('score-bot');
     const modeDisplay = document.getElementById('mode-display');
 
+    const bgMusic = new Audio('principio.mp3');
+    bgMusic.loop = true;
+    const winSound = new Audio('victoria.mp3');
+    const loseSound = new Audio('derrota.mp3');
+    const tieSound = new Audio('empate.mp3');
+    const countdownSound = new Audio('cuenta_atras.mp3');
+
+    const startMenuMusic = () => {
+        if (currentState === STATES.MENU && bgMusic.paused) {
+            bgMusic.play().catch(() => {});
+        }
+        document.removeEventListener('keydown', startMenuMusic);
+        document.removeEventListener('click', startMenuMusic);
+    };
+    document.addEventListener('keydown', startMenuMusic);
+    document.addEventListener('click', startMenuMusic);
+
     const timerDisplay = document.createElement('div');
     timerDisplay.style.fontSize = '1.5rem';
     timerDisplay.style.fontWeight = 'bold';
@@ -111,8 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
         matchTimeCounter = 0; 
         confetti = []; 
         
+        bgMusic.pause(); bgMusic.currentTime = 0;
+        winSound.pause(); winSound.currentTime = 0;
+        loseSound.pause(); loseSound.currentTime = 0;
+        tieSound.pause(); tieSound.currentTime = 0;
+
         if (gameMode === 3) {
-            matchSeconds = 30; // 30 segundos de cuenta atrás
+            matchSeconds = 30;
         } else {
             matchSeconds = 0;
         }
@@ -134,6 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
         uiLayer.classList.remove('hidden'); messageScreen.classList.remove('hidden');
         gameOverControls.classList.add('hidden'); countdownValue = 3;
         overlayText.textContent = countdownValue; countdownTimer = Date.now(); lastFrameTime = Date.now();
+        
+        countdownSound.currentTime = 0;
+        countdownSound.play().catch(() => {});
     }
 
     function handleGoal(scorer) {
@@ -155,12 +180,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function endGame(playerWon, isTie = false) {
         currentState = STATES.GAMEOVER; uiLayer.style.background = "rgba(0,0,0,0.8)";
+        countdownSound.pause();
+        bgMusic.pause();
         
         if (isTie) {
             overlayText.textContent = "¡Empate!";
+            tieSound.currentTime = 0;
+            tieSound.play().catch(() => {});
         } else {
             overlayText.textContent = playerWon ? "¡Has ganado!" : "¡Has perdido!";
-            if (playerWon) triggerConfetti();
+            if (playerWon) {
+                triggerConfetti();
+                winSound.currentTime = 0;
+                winSound.play().catch(() => {});
+            } else {
+                loseSound.currentTime = 0;
+                loseSound.play().catch(() => {});
+            }
         }
         
         uiLayer.classList.remove('hidden');
@@ -215,7 +251,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentState === STATES.GAMEOVER) { 
             if (scores.player > scores.bot) updateConfetti(); 
             if (keys['r'] || keys['R']) startGame(gameMode); 
-            if (keys['m'] || keys['M']) location.reload(); 
+            if (keys['m'] || keys['M']) {
+                currentState = STATES.MENU;
+                confetti = [];
+                uiLayer.classList.remove('hidden');
+                menuScreen.classList.remove('hidden');
+                messageScreen.classList.add('hidden');
+                scoreDisplay.classList.add('hidden');
+                
+                winSound.pause(); loseSound.pause(); tieSound.pause();
+                bgMusic.currentTime = 0;
+                bgMusic.play().catch(() => {});
+            }
             return; 
         }
         
@@ -263,39 +310,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         ball.x += ball.vx; ball.y += ball.vy; ball.vx *= ball.friction; ball.vy *= ball.friction;
         
-        // Rebote en bordes superior e inferior
         if (ball.y - ball.r < FIELD.margin) { ball.y = FIELD.margin + ball.r; ball.vy *= -1; }
         if (ball.y + ball.r > FIELD.height - FIELD.margin) { ball.y = FIELD.height - FIELD.margin - ball.r; ball.vy *= -1; }
         
-        // Rebote en paredes laterales y fondo de las porterías
         if (ball.x - ball.r < FIELD.margin) {
             if (ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
-                // Control del fondo de la portería
                 if (ball.x - ball.r < FIELD.margin - GOAL_WIDTH) {
-                    ball.x = FIELD.margin - GOAL_WIDTH + ball.r;
-                    ball.vx *= -1;
+                    ball.x = FIELD.margin - GOAL_WIDTH + ball.r; ball.vx *= -1;
                 }
-                // Si la pelota entra en el área, marca gol
-                if (currentState === STATES.PLAYING && ball.x < FIELD.margin) {
-                    handleGoal('bot');
-                }
-            } else {
-                ball.x = FIELD.margin + ball.r; ball.vx *= -1;
-            }
+                if (currentState === STATES.PLAYING && ball.x < FIELD.margin) { handleGoal('bot'); }
+            } else { ball.x = FIELD.margin + ball.r; ball.vx *= -1; }
         } else if (ball.x + ball.r > FIELD.width - FIELD.margin) {
             if (ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
-                // Control del fondo de la portería
                 if (ball.x + ball.r > FIELD.width - FIELD.margin + GOAL_WIDTH) {
-                    ball.x = FIELD.width - FIELD.margin + GOAL_WIDTH - ball.r;
-                    ball.vx *= -1;
+                    ball.x = FIELD.width - FIELD.margin + GOAL_WIDTH - ball.r; ball.vx *= -1;
                 }
-                // Si la pelota entra en el área, marca gol
-                if (currentState === STATES.PLAYING && ball.x > FIELD.width - FIELD.margin) {
-                    handleGoal('player');
-                }
-            } else {
-                ball.x = FIELD.width - FIELD.margin - ball.r; ball.vx *= -1;
-            }
+                if (currentState === STATES.PLAYING && ball.x > FIELD.width - FIELD.margin) { handleGoal('player'); }
+            } else { ball.x = FIELD.width - FIELD.margin - ball.r; ball.vx *= -1; }
         }
         
         let allChars = [player, teammate, ...bots]; 
