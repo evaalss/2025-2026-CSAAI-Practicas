@@ -20,14 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownSound = new Audio('cuenta_atras.mp3');
     const goalSound = new Audio('gol.mp3');
 
-    const startMenuMusic = () => {
-        if (currentState === STATES.MENU && bgMusic.paused) {
-            bgMusic.play().catch(() => {});
-        }
-    };
-    document.addEventListener('keydown', startMenuMusic, {once: true});
-    document.addEventListener('touchstart', startMenuMusic, {once: true});
-    document.addEventListener('click', startMenuMusic, {once: true});
+    // Intentar reproducir inmediatamente al cargar
+    bgMusic.play().catch(() => {
+        // Si el navegador bloquea el autoplay, usamos el fallback con la primera interacción
+        const playOnInteraction = () => {
+            if (currentState === STATES.MENU && bgMusic.paused) {
+                bgMusic.play().catch(() => {});
+            }
+            document.removeEventListener('click', playOnInteraction);
+            document.removeEventListener('keydown', playOnInteraction);
+            document.removeEventListener('touchstart', playOnInteraction);
+        };
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('keydown', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+    });
 
     const timerDisplay = document.createElement('div');
     timerDisplay.style.fontSize = '1.5rem';
@@ -68,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
 
-    // Mapear los botones del móvil para que actúen como el teclado
     const bindTouch = (id, keyName) => {
         const btn = document.getElementById(id);
         if(!btn) return;
@@ -272,7 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let now = Date.now(); let dt = now - lastFrameTime; lastFrameTime = now;
         if (dt > 100) dt = 16; 
         
-        // El control por teclado del menú sigue activo para quien juegue en PC
         if (currentState === STATES.MENU) { 
             if (keys['1']) startGame(1); if (keys['2']) startGame(2); if (keys['3']) startGame(3); return; 
         }
