@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreBotEl = document.getElementById('score-bot');
     const modeDisplay = document.getElementById('mode-display');
 
+    // --- Sistema de Audio ---
     const bgMusic = new Audio('principio.mp3');
     bgMusic.loop = true;
     const winSound = new Audio('victoria.mp3');
@@ -18,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tieSound = new Audio('empate.mp3');
     const countdownSound = new Audio('cuenta_atras.mp3');
     const goalSound = new Audio('gol.mp3');
+
+    // --- Sistema de Imágenes ---
+    const ballImg = new Image();
+    ballImg.src = 'balon.png';
 
     const startMenuMusic = () => {
         if (currentState === STATES.MENU && bgMusic.paused) {
@@ -54,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const GOAL_TOP = (FIELD.height - GOAL_HEIGHT) / 2;
     const GOAL_BOTTOM = GOAL_TOP + GOAL_HEIGHT;
 
-    let player = { x: 200, y: 150, r: 18, color: '#ff69b4', angle: 0, speed: 4 }; // Rosa vibrante
-    let teammate = { x: 200, y: 350, r: 18, color: '#ffb6c1', speed: 2 }; // Rosa claro
+    let player = { x: 200, y: 150, r: 18, color: '#ff69b4', angle: 0, speed: 4 }; 
+    let teammate = { x: 200, y: 350, r: 18, color: '#ffb6c1', speed: 2 }; 
     let ball = { x: 400, y: 250, r: 10, color: '#ffffff', vx: 0, vy: 0, friction: 0.97 };
     let bots = [
-        { x: 600, y: 150, r: 18, color: '#2b78e4', speed: 2 }, // Azul
-        { x: 600, y: 350, r: 18, color: '#2b78e4', speed: 2.2 } // Azul
+        { x: 600, y: 150, r: 18, color: '#2b78e4', speed: 2 }, 
+        { x: 600, y: 350, r: 18, color: '#2b78e4', speed: 2.2 } 
     ];
 
     const keys = {};
@@ -356,7 +361,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath(); ctx.moveTo(player.x + Math.cos(player.angle) * player.r, player.y + Math.sin(player.angle) * player.r); ctx.lineTo(player.x + Math.cos(player.angle) * (player.r + 10), player.y + Math.sin(player.angle) * (player.r + 10)); ctx.lineWidth = 4; ctx.stroke();
         
         bots.forEach(bot => { ctx.fillStyle = bot.color; ctx.beginPath(); ctx.arc(bot.x, bot.y, bot.r, 0, Math.PI * 2); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#ffffff'; ctx.stroke(); });
-        ctx.fillStyle = ball.color; ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#000000'; ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r - 4, 0, Math.PI * 2); ctx.fill(); 
+        
+        // Dibujado del nuevo balón con imagen
+        ctx.drawImage(ballImg, ball.x - ball.r, ball.y - ball.r, ball.r * 2, ball.r * 2);
         
         if (confetti.length > 0) drawConfetti();
     }
