@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -68,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const keys = {};
-    window.addEventListener('keydown', (e) => keys[e.key] = true);
-    window.addEventListener('keyup', (e) => keys[e.key] = false);
+    window.addEventListener('keydown', (e) => { keys[e.key] = true; });
+    window.addEventListener('keyup', (e) => { keys[e.key] = false; });
 
     const bindTouch = (id, keyName) => {
         const btn = document.getElementById(id);
@@ -98,24 +99,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.getElementById('btn-restart').addEventListener('click', () => {
-        if(currentState === STATES.GAMEOVER) startGame(gameMode);
-    });
+    const btnRestart = document.getElementById('btn-restart');
+    if (btnRestart) {
+        btnRestart.addEventListener('click', () => {
+            if(currentState === STATES.GAMEOVER) startGame(gameMode);
+        });
+    }
 
-    document.getElementById('btn-menu').addEventListener('click', () => {
-        if(currentState === STATES.GAMEOVER) {
-            currentState = STATES.MENU;
-            confetti = [];
-            uiLayer.classList.remove('hidden');
-            menuScreen.classList.remove('hidden');
-            messageScreen.classList.add('hidden');
-            scoreDisplay.classList.add('hidden');
-            
-            winSound.pause(); loseSound.pause(); tieSound.pause(); goalSound.pause();
-            bgMusic.currentTime = 0;
-            bgMusic.play().catch(() => {});
-        }
-    });
+    const btnMenu = document.getElementById('btn-menu');
+    if (btnMenu) {
+        btnMenu.addEventListener('click', () => {
+            if(currentState === STATES.GAMEOVER) {
+                currentState = STATES.MENU;
+                confetti = [];
+                uiLayer.classList.remove('hidden');
+                menuScreen.classList.remove('hidden');
+                messageScreen.classList.add('hidden');
+                scoreDisplay.classList.add('hidden');
+                
+                winSound.pause(); loseSound.pause(); tieSound.pause(); goalSound.pause();
+                bgMusic.currentTime = 0;
+                bgMusic.play().catch(() => {});
+            }
+        });
+    }
 
     let confetti = [];
     const confettiColors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
@@ -196,9 +203,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleGoal(scorer) {
         currentState = STATES.GOAL;
-        scorer === 'player' ? scores.player++ : scores.bot++;
+        
+        if (scorer === 'player') {
+            scores.player++;
+        } else {
+            scores.bot++;
+        }
+        
         updateScoreUI();
-        uiLayer.classList.remove('hidden'); overlayText.textContent = scorer === 'player' ? "¡GOOOL!" : "¡Gol rival!";
+        uiLayer.classList.remove('hidden'); 
+        
+        if (scorer === 'player') {
+            overlayText.textContent = "¡GOOOL!";
+        } else {
+            overlayText.textContent = "¡Gol rival!";
+        }
         
         goalSound.currentTime = 0; goalSound.play().catch(() => {});
 
@@ -222,11 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
             overlayText.textContent = "¡Empate!";
             tieSound.currentTime = 0; tieSound.play().catch(() => {});
         } else {
-            overlayText.textContent = playerWon ? "¡Has ganado!" : "¡Has perdido!";
             if (playerWon) {
+                overlayText.textContent = "¡Has ganado!";
                 triggerConfetti();
                 winSound.currentTime = 0; winSound.play().catch(() => {});
             } else {
+                overlayText.textContent = "¡Has perdido!";
                 loseSound.currentTime = 0; loseSound.play().catch(() => {});
             }
         }
@@ -273,18 +293,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dt > 100) dt = 16; 
         
         if (currentState === STATES.MENU) { 
-            if (keys['1']) startGame(1); if (keys['2']) startGame(2); if (keys['3']) startGame(3); return; 
+            if (keys['1']) { startGame(1); }
+            if (keys['2']) { startGame(2); }
+            if (keys['3']) { startGame(3); }
+            return; 
         }
         
         if (currentState === STATES.GAMEOVER) { 
             if (scores.player > scores.bot) updateConfetti(); 
-            if (keys['r'] || keys['R']) startGame(gameMode); 
-            if (keys['m'] || keys['M']) document.getElementById('btn-menu').click(); 
+            if (keys.r || keys.R) { startGame(gameMode); }
+            if (keys.m || keys.M) {
+                if (btnMenu) btnMenu.click();
+            }
             return; 
         }
         
         if (currentState === STATES.COUNTDOWN) {
-            if (Date.now() - countdownTimer > 1000) { countdownValue--; countdownTimer = Date.now(); overlayText.textContent = countdownValue > 0 ? countdownValue : "¡YA!"; }
+            if (Date.now() - countdownTimer > 1000) { 
+                countdownValue--; 
+                countdownTimer = Date.now(); 
+                if (countdownValue > 0) {
+                    overlayText.textContent = countdownValue;
+                } else {
+                    overlayText.textContent = "¡YA!";
+                }
+            }
             if (countdownValue < 0) { currentState = STATES.PLAYING; uiLayer.classList.add('hidden'); }
             return;
         }
@@ -305,9 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTimerUI();
         }
         
-        if (keys['ArrowUp']) player.y -= player.speed; if (keys['ArrowDown']) player.y += player.speed;
-        if (keys['ArrowLeft']) player.x -= player.speed; if (keys['ArrowRight']) player.x += player.speed;
-        if (keys['a'] || keys['A']) player.angle -= 0.08; if (keys['d'] || keys['D']) player.angle += 0.08;
+        if (keys.ArrowUp) player.y -= player.speed; 
+        if (keys.ArrowDown) player.y += player.speed;
+        if (keys.ArrowLeft) player.x -= player.speed; 
+        if (keys.ArrowRight) player.x += player.speed;
+        if (keys.a || keys.A) player.angle -= 0.08; 
+        if (keys.d || keys.D) player.angle += 0.08;
         
         player.x = Math.max(FIELD.margin + player.r, Math.min(FIELD.width - FIELD.margin - player.r, player.x));
         player.y = Math.max(FIELD.margin + player.r, Math.min(FIELD.height - FIELD.margin - player.r, player.y));
@@ -362,7 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         bots.forEach(bot => { ctx.fillStyle = bot.color; ctx.beginPath(); ctx.arc(bot.x, bot.y, bot.r, 0, Math.PI * 2); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#ffffff'; ctx.stroke(); });
         
-        // Dibujado del nuevo balón con imagen
         ctx.drawImage(ballImg, ball.x - ball.r, ball.y - ball.r, ball.r * 2, ball.r * 2);
         
         if (confetti.length > 0) drawConfetti();
